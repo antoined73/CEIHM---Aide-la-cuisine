@@ -1,17 +1,26 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <gest-wrapper-library/>
+    <gest-p-o-c/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import GestWrapperLibrary from './components/GestWrapperLibrary.vue'
+import GestPOC from './components/GestPOC.vue'
 
 export default {
   name: 'app',
+  props: {
+    direction: {
+      type: String,
+      default: 'null'
+    }
+  },
   components: {
-    HelloWorld
+    GestWrapperLibrary,
+    GestPOC
   }
 }
 </script>

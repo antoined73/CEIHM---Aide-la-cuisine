@@ -13,10 +13,7 @@
                     </a>
                 </div>
                 <div class="column is-four-fifths has-text-centered">
-                    <div class="notification">
-                        <p class="title is-size-4">Je cuisine pour 4 personnes</p>
-                        <IngredientList :recipe="this.recipe"/>
-                    </div>
+                    <router-view/>
                 </div>
                 <div class="column">
                     <a class="button is-large is-pulled-right">
@@ -35,7 +32,6 @@
             <div class="notification has-text-centered">
                 <p class="title is-size-4">La recette que tu cherches n'existe pas ou n'existe plus..</p>
                 <a class="button is-large is-primary" @click="clickBackHomeButton()">Retourner à l'accueil</a>
-
             </div>
         </div>
     </div>
@@ -44,13 +40,11 @@
 
 <script>
 import RecipeHeader from '../headers/RecipeHeader.vue'
-import IngredientList from '../IngredientList.vue'
 
 export default {
     name: 'RecipeView',
     components : {
-        RecipeHeader,
-        IngredientList
+        RecipeHeader
     },
     data(){
         return {
@@ -58,7 +52,7 @@ export default {
         }
     },
     created(){
-        this.recipe = this.$store.getters.getRecipeById(this.$route.params.id);
+        this.recipe = this.$store.getters.getRecipeById(this.$route.params.recipeID);
     },
     methods : {
         clickBackHomeButton(){

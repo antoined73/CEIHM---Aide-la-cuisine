@@ -9,7 +9,7 @@
 
 <script>
 import HomeHeader from '../headers/HomeHeader.vue'
-import RecipeList from '../RecipeList.vue'
+import RecipeList from '../recipes/RecipeList.vue'
 
 export default {
   name: 'AccueilView',

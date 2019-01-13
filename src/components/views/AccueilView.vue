@@ -1,16 +1,21 @@
 <template>
-    <div class="section">
-        <RecipeList/>
+    <div>
+        <HomeHeader/>
+        <div class="section">
+            <RecipeList/>
+        </div>
     </div>
 </template>
 
 <script>
+import HomeHeader from '../headers/HomeHeader.vue'
 import RecipeList from '../RecipeList.vue'
 
 export default {
   name: 'AccueilView',
   components: {
-      RecipeList
+      RecipeList,
+      HomeHeader
   }
 }
 </script>

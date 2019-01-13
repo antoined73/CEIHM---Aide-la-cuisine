@@ -1,15 +1,57 @@
 <template>
-    <div v-if="recipe">
-        <p>{{this.recipe.name}}</p>
+    <div>
+        <RecipeHeader :recipe="this.recipe"/>
+
+        <!-- If recipe exist -->
+        <div v-if="recipe" class="section">
+            <div class="columns is-mobile">
+                <div class="column">
+                    <a class="button is-large is-pulled-left">
+                        <span class="icon is-medium">
+                        <i class="fas fa-arrow-left fa-2x"></i>
+                        </span>
+                    </a>
+                </div>
+                <div class="column is-four-fifths has-text-centered">
+                    <div class="notification">
+                        <p class="title is-size-4">Je cuisine pour 4 personnes</p>
+                        <IngredientList :recipe="this.recipe"/>
+                    </div>
+                </div>
+                <div class="column">
+                    <a class="button is-large is-pulled-right">
+                        <span class="icon is-medium">
+                        <i class="fas fa-arrow-right fa-2x"></i>
+                        </span>
+                    </a>
+                </div>
+            </div>
+            
+            
+        </div>
+
+        <!-- If recipe doesn't exist -->
+        <div v-else class="section">
+            <div class="notification has-text-centered">
+                <p class="title is-size-4">La recette que tu cherches n'existe pas ou n'existe plus..</p>
+                <a class="button is-large is-primary" @click="clickBackHomeButton()">Retourner à l'accueil</a>
+
+            </div>
+        </div>
     </div>
-    <div v-else>
-        <p>The recipe you are searching for doesn't exist or is no longer available :(</p>
-    </div>
+    
 </template>
 
 <script>
+import RecipeHeader from '../headers/RecipeHeader.vue'
+import IngredientList from '../IngredientList.vue'
+
 export default {
     name: 'RecipeView',
+    components : {
+        RecipeHeader,
+        IngredientList
+    },
     data(){
         return {
             recipe: Object
@@ -17,6 +59,11 @@ export default {
     },
     created(){
         this.recipe = this.$store.getters.getRecipeById(this.$route.params.id);
+    },
+    methods : {
+        clickBackHomeButton(){
+            this.$router.push("/");
+        }
     }
 }
 </script>

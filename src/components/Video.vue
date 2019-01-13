@@ -1,7 +1,7 @@
 <template>
 
     <section class="video-player">
-        <youtube :video-id="videoId" :player-vars="playerVars" :fitParent="true" ref="youtube" @ready="playVideo" ></youtube>
+        <youtube :video-id="videoId" :player-vars="playerVars" :resize="true" :fitParent="true" ref="youtube" @ready="playVideo" ></youtube>
     </section>
     
 </template>
@@ -14,7 +14,7 @@ export default {
     data() {
         return {
             playerVars: {
-                autoplay: 1,
+                autoplay: 0,
                 origin: "localhost:8080"
             }
         }

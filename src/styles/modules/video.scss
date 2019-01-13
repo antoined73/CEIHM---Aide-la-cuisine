@@ -6,13 +6,13 @@ section.video-section {
 
     & section.video-player {
         display: flex;
-        flex-direction: column;
         width: 100%;
         justify-content: center;
 
         & iframe {
             width: 100%;
-            max-width: 650px;
+            max-width: 900px;
+            max-height: 508px;
         }
     }
 }

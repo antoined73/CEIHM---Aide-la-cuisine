@@ -1,6 +1,7 @@
 <template>
     <div v-if="recipe">
         <p>{{this.recipe.name}}</p>
+        <a @click="linkToVideo()">Go to the video helper</a>
     </div>
     <div v-else>
         <p>The recipe you are searching for doesn't exist or is no longer available :(</p>
@@ -10,6 +11,12 @@
 <script>
 export default {
     name: 'RecipeView',
+    methods: {
+        linkToVideo(){
+            this.$router.push('/recipeVideo/'+this.recipe.id);
+        }
+    },
+
     data(){
         return {
             recipe: Object

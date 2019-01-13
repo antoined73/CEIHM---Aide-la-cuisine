@@ -32,6 +32,8 @@ $fa-font-path: './styles/webfonts'; //indicates where font folder is
 @import './../../node_modules/@fortawesome/fontawesome-free/scss/solid.scss';
 @import './../../node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss';
 
+// Modules
+@import 'modules/video.scss';
 
 // global classes 
 .clickable {

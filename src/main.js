@@ -3,11 +3,14 @@ import App from './App.vue'
 import router from './services/router.js'
 import store from './services/store.js'
 import Buefy from 'buefy'
+import VueYoutube from 'vue-youtube'
 
 Vue.config.productionTip = false
 
 // Buefy 
 Vue.use(Buefy, { defaultIconPack: 'fa' })
+
+Vue.use(VueYoutube)
 
 new Vue({
   router,

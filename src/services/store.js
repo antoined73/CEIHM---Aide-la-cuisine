@@ -3,6 +3,8 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
+import coquillettes_au_beurre from './../assets/images/recipes/coquillettes_au_beurre.jpg';
+
 const store = new Vuex.Store({
     state: {
         recipes: [
@@ -10,123 +12,69 @@ const store = new Vuex.Store({
                 id: 0,
                 name: "Pâtes au beurre 1",
                 description: "La délicieuse recette secrète de ma maman qui m'en faisait quand j'étais pas bien...",
-                image: "https://cache.magicmaman.com/data/photo/w600_c18/10f/9284-coquillettesau-beurre1.jpg"
+                image: coquillettes_au_beurre
             },
             {
                 id: 1,
                 name: "Pâtes au beurre 2",
                 description: "La délicieuse recette secrète de ma maman qui m'en faisait quand j'étais pas bien...",
-                image: "https://cache.magicmaman.com/data/photo/w600_c18/10f/9284-coquillettesau-beurre1.jpg"
+                image: coquillettes_au_beurre
             },
             {
                 id: 2,
                 name: "Pâtes au beurre 3",
                 description: "La délicieuse recette secrète de ma maman qui m'en faisait quand j'étais pas bien...",
-                image: "https://cache.magicmaman.com/data/photo/w600_c18/10f/9284-coquillettesau-beurre1.jpg"
+                image: coquillettes_au_beurre
             },
             {
                 id: 3,
                 name: "Pâtes au beurre 4",
                 description: "La délicieuse recette secrète de ma maman qui m'en faisait quand j'étais pas bien...",
-                image: "https://cache.magicmaman.com/data/photo/w600_c18/10f/9284-coquillettesau-beurre1.jpg"
+                image: coquillettes_au_beurre
             },
             {
                 id: 4,
                 name: "Pâtes au beurre 5",
                 description: "La délicieuse recette secrète de ma maman qui m'en faisait quand j'étais pas bien...",
-                image: "https://cache.magicmaman.com/data/photo/w600_c18/10f/9284-coquillettesau-beurre1.jpg"
+                image: coquillettes_au_beurre
             },
             {
-                id: 0,
+                id: 5,
                 name: "Pâtes au beurre 6",
                 description: "La délicieuse recette secrète de ma maman qui m'en faisait quand j'étais pas bien...",
-                image: "https://cache.magicmaman.com/data/photo/w600_c18/10f/9284-coquillettesau-beurre1.jpg"
+                image: coquillettes_au_beurre
             },
             {
-                id: 1,
+                id: 6,
                 name: "Pâtes au beurre 7",
                 description: "La délicieuse recette secrète de ma maman qui m'en faisait quand j'étais pas bien...",
-                image: "https://cache.magicmaman.com/data/photo/w600_c18/10f/9284-coquillettesau-beurre1.jpg"
+                image: coquillettes_au_beurre
             },
             {
-                id: 2,
+                id: 7,
                 name: "Pâtes au beurre 8",
                 description: "La délicieuse recette secrète de ma maman qui m'en faisait quand j'étais pas bien...",
-                image: "https://cache.magicmaman.com/data/photo/w600_c18/10f/9284-coquillettesau-beurre1.jpg"
+                image: coquillettes_au_beurre
             },
             {
-                id: 3,
+                id: 8,
                 name: "Pâtes au beurre 9",
                 description: "La délicieuse recette secrète de ma maman qui m'en faisait quand j'étais pas bien...",
-                image: "https://cache.magicmaman.com/data/photo/w600_c18/10f/9284-coquillettesau-beurre1.jpg"
+                image: coquillettes_au_beurre
             },
             {
-                id: 4,
+                id: 9,
                 name: "Pâtes au beurre 10",
                 description: "La délicieuse recette secrète de ma maman qui m'en faisait quand j'étais pas bien...",
-                image: "https://cache.magicmaman.com/data/photo/w600_c18/10f/9284-coquillettesau-beurre1.jpg"
-            },
-            {
-                id: 0,
-                name: "Pâtes au beurre 11",
-                description: "La délicieuse recette secrète de ma maman qui m'en faisait quand j'étais pas bien...",
-                image: "https://cache.magicmaman.com/data/photo/w600_c18/10f/9284-coquillettesau-beurre1.jpg"
-            },
-            {
-                id: 1,
-                name: "Pâtes au beurre 12",
-                description: "La délicieuse recette secrète de ma maman qui m'en faisait quand j'étais pas bien...",
-                image: "https://cache.magicmaman.com/data/photo/w600_c18/10f/9284-coquillettesau-beurre1.jpg"
-            },
-            {
-                id: 2,
-                name: "Pâtes au beurre 13",
-                description: "La délicieuse recette secrète de ma maman qui m'en faisait quand j'étais pas bien...",
-                image: "https://cache.magicmaman.com/data/photo/w600_c18/10f/9284-coquillettesau-beurre1.jpg"
-            },
-            {
-                id: 3,
-                name: "Pâtes au beurre 14",
-                description: "La délicieuse recette secrète de ma maman qui m'en faisait quand j'étais pas bien...",
-                image: "https://cache.magicmaman.com/data/photo/w600_c18/10f/9284-coquillettesau-beurre1.jpg"
-            },
-            {
-                id: 4,
-                name: "Pâtes au beurre 15",
-                description: "La délicieuse recette secrète de ma maman qui m'en faisait quand j'étais pas bien...",
-                image: "https://cache.magicmaman.com/data/photo/w600_c18/10f/9284-coquillettesau-beurre1.jpg"
-            },
-            {
-                id: 0,
-                name: "Pâtes au beurre 16",
-                description: "La délicieuse recette secrète de ma maman qui m'en faisait quand j'étais pas bien...",
-                image: "https://cache.magicmaman.com/data/photo/w600_c18/10f/9284-coquillettesau-beurre1.jpg"
-            },
-            {
-                id: 1,
-                name: "Pâtes au beurre 17",
-                description: "La délicieuse recette secrète de ma maman qui m'en faisait quand j'étais pas bien...",
-                image: "https://cache.magicmaman.com/data/photo/w600_c18/10f/9284-coquillettesau-beurre1.jpg"
-            },
-            {
-                id: 2,
-                name: "Pâtes au beurre 18",
-                description: "La délicieuse recette secrète de ma maman qui m'en faisait quand j'étais pas bien...",
-                image: "https://cache.magicmaman.com/data/photo/w600_c18/10f/9284-coquillettesau-beurre1.jpg"
-            },
-            {
-                id: 3,
-                name: "Pâtes au beurre 19",
-                description: "La délicieuse recette secrète de ma maman qui m'en faisait quand j'étais pas bien...",
-                image: "https://cache.magicmaman.com/data/photo/w600_c18/10f/9284-coquillettesau-beurre1.jpg"
-            },
-            {
-                id: 4,
-                name: "Pâtes au beurre 20",
-                description: "La délicieuse recette secrète de ma maman qui m'en faisait quand j'étais pas bien...",
-                image: "https://cache.magicmaman.com/data/photo/w600_c18/10f/9284-coquillettesau-beurre1.jpg"
+                image: coquillettes_au_beurre
             }
         ]
+    },
+    getters: {
+      getRecipeById: (state) => (id) => {
+        const recipe = state.recipes.find(r => r.id == id);
+        return recipe;
+      }
     }
 })
 

@@ -1,5 +1,5 @@
 <template>
-    <div class="box is-paddingless clickable grow">
+    <div class="box is-paddingless clickable grow" @click="recipeClicked()">
         <figure class="image is-4by3">
             <img :src="recipe.image" alt="Placeholder image">
         </figure>
@@ -17,6 +17,11 @@ export default {
     name: 'RecipeItem',
     props: {
         recipe : Object
+    },
+    methods: {
+        recipeClicked(){
+            this.$router.push('recipe/'+this.recipe.id);
+        }
     }
 }
 </script>

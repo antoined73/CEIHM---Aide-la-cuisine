@@ -15,7 +15,8 @@ const store = new Vuex.Store({
                 image: coquillettes_au_beurre,
                 videoId:"9_5wHw6l11o",
                 currentStep: 0,
-                maxStep: 5
+                maxStep: 5,
+                timestampStepVideo: [0, 10, 15, 20, 25]
             },
             {
                 id: 1,
@@ -24,7 +25,8 @@ const store = new Vuex.Store({
                 image: coquillettes_au_beurre,
                 videoId:"9_5wHw6l11o",
                 currentStep: 0,
-                maxStep: 5
+                maxStep: 5,
+                timestampStepVideo: [0, 10, 15, 20, 25]
             },
             {
                 id: 2,
@@ -33,7 +35,8 @@ const store = new Vuex.Store({
                 image: coquillettes_au_beurre,
                 videoId:"9_5wHw6l11o",
                 currentStep: 0,
-                maxStep: 5
+                maxStep: 5,
+                timestampStepVideo: [0, 10, 15, 20, 25]
             },
             {
                 id: 3,
@@ -42,7 +45,8 @@ const store = new Vuex.Store({
                 image: coquillettes_au_beurre,
                 videoId:"9_5wHw6l11o",
                 currentStep: 0,
-                maxStep: 5
+                maxStep: 5,
+                timestampStepVideo: [0, 10, 15, 20, 25]
             },
             {
                 id: 4,
@@ -51,7 +55,8 @@ const store = new Vuex.Store({
                 image: coquillettes_au_beurre,
                 videoId:"9_5wHw6l11o",
                 currentStep: 0,
-                maxStep: 5
+                maxStep: 5,
+                timestampStepVideo: [0, 10, 15, 20, 25]
             },
             {
                 id: 5,
@@ -60,7 +65,8 @@ const store = new Vuex.Store({
                 image: coquillettes_au_beurre,
                 videoId:"9_5wHw6l11o",
                 currentStep: 0,
-                maxStep: 5
+                maxStep: 5,
+                timestampStepVideo: [0, 10, 15, 20, 25]
             },
             {
                 id: 6,
@@ -69,7 +75,8 @@ const store = new Vuex.Store({
                 image: coquillettes_au_beurre,
                 videoId:"9_5wHw6l11o",
                 currentStep: 0,
-                maxStep: 5
+                maxStep: 5,
+                timestampStepVideo: [0, 10, 15, 20, 25]
             },
             {
                 id: 7,
@@ -78,7 +85,8 @@ const store = new Vuex.Store({
                 image: coquillettes_au_beurre,
                 videoId:"9_5wHw6l11o",
                 currentStep: 0,
-                maxStep: 5
+                maxStep: 5,
+                timestampStepVideo: [0, 10, 15, 20, 25]
             },
             {
                 id: 8,
@@ -87,7 +95,8 @@ const store = new Vuex.Store({
                 image: coquillettes_au_beurre,
                 videoId:"9_5wHw6l11o",
                 currentStep: 0,
-                maxStep: 5
+                maxStep: 5,
+                timestampStepVideo: [0, 10, 15, 20, 25]
             },
             {
                 id: 9,
@@ -96,7 +105,8 @@ const store = new Vuex.Store({
                 image: coquillettes_au_beurre,
                 videoId:"9_5wHw6l11o",
                 currentStep: 0,
-                maxStep: 5
+                maxStep: 5,
+                timestampStepVideo: [0, 10, 15, 20, 25]
             }
         ]
     },

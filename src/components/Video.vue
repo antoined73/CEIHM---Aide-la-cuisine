@@ -17,7 +17,7 @@
 
 export default {
     name: 'Video',
-    props: ['videoId'],
+    props: ['videoId', 'videoTimestamp'],
     data() {
         return {
             playerVars: {
@@ -29,6 +29,7 @@ export default {
     },
     methods: {
         playVideo() {
+            this.player.seekTo(this.videoTimestamp, true);
             this.player.playVideo()
         },
         playingVideo() {

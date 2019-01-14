@@ -17,30 +17,35 @@ const store = new Vuex.Store({
                     {
                         id: 0,
                         name: "Farine",
+                        image:"https://target.scene7.com/is/image/Target/GUEST_8d7004e2-aaf3-413d-907c-98a6c12411ab?wid=488&hei=488&fmt=pjpeg",
                         quantity: 400,
                         unit: "g"
                     },
                      {
                         id: 1,
                         name: "Huile d'olive",
+                        image:"https://target.scene7.com/is/image/Target/GUEST_8d7004e2-aaf3-413d-907c-98a6c12411ab?wid=488&hei=488&fmt=pjpeg",
                         quantity: 2,
                         unit: "cuillères à soupe"
                     },
                      {
                         id: 2,
                         name: "Coquillettes",
+                        image:"https://target.scene7.com/is/image/Target/GUEST_8d7004e2-aaf3-413d-907c-98a6c12411ab?wid=488&hei=488&fmt=pjpeg",
                         quantity: 250,
                         unit: "g"
                     },
                      {
                         id: 3,
                         name: "Oignon",
+                        image:"https://target.scene7.com/is/image/Target/GUEST_8d7004e2-aaf3-413d-907c-98a6c12411ab?wid=488&hei=488&fmt=pjpeg",
                         quantity: 2,
                         unit: "unités"
                     },
                      {
                         id: 4,
                         name: "Levure",
+                        image:"https://target.scene7.com/is/image/Target/GUEST_8d7004e2-aaf3-413d-907c-98a6c12411ab?wid=488&hei=488&fmt=pjpeg",
                         quantity: 1,
                         unit: "sachet"
                     }

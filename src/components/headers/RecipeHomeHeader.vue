@@ -1,9 +1,9 @@
 <template>
     <section class="hero is-primary">
-        <div class="hero-body">
+        <div class="hero-body little-header">
             <!-- If recipe exist -->
             <div v-if="recipe" class="container">
-            <h1 class="title">
+            <h1 class="title is-size-5-touch">
                 {{this.recipe.name}}
             </h1>
             </div>
@@ -20,7 +20,7 @@
 
 <script>
 export default {
-    name: 'HomeHeader',
+    name: 'RecipeHomeHeader',
     props : {
         recipe : {
             type: Object,

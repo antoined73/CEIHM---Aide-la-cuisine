@@ -1,16 +1,21 @@
 <template>
-    <div class="notification">
+<div>
+    <RecipeHomeHeader :recipe="this.recipe"/>
+    <div class="section has-text-centered has-background-white-bis section-little">
         <p class="title is-size-4">Je cuisine pour 4 personnes</p>
         <IngredientList :recipe="this.recipe"/>
     </div>
+</div>
 </template>
 
 <script>
+import RecipeHomeHeader from '../headers/RecipeHomeHeader.vue'
 import IngredientList from '../ingredients/IngredientList.vue'
 
 export default {
     components:{
-        IngredientList
+        IngredientList,
+        RecipeHomeHeader
     },
     data(){
         return {
@@ -24,5 +29,7 @@ export default {
 </script>
 
 <style>
-
+.section-little{
+    padding: 0.8rem 0.8rem;
+}
 </style>

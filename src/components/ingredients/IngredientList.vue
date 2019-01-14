@@ -1,8 +1,12 @@
 <template>
 <div class="has-text-left">
-    <h2 class="title is-size-3">Ingrédients</h2>
     <div class="notification">
-        <IngredientItem v-for="(ingredient,index) in ingredients" :key="index" :ingredient="ingredient"/>
+        <h2 class="title is-size-5-touch is-size-4-desktop">Ingrédients</h2>
+        <div class="columns is-multiline is-centered is-gapless">
+            <div class="column is-full-mobile is-4-tablet is-3-desktop" v-for="(ingredient,index) in ingredients" :key="index" >
+                <IngredientItem :ingredient="ingredient"/>
+            </div>
+        </div>
     </div>
 </div>
 </template>

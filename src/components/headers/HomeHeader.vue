@@ -1,13 +1,10 @@
 <template>
     <section class="hero is-primary">
-        <div class="hero-body">
+        <div class="hero-body little-header">
             <div class="container">
-            <h1 class="title">
+            <h1 class="title is-size-5-touch is-marginless">
                 Aide allah cuit zine
             </h1>
-            <h2 class="subtitle">
-                Pour apprendre à faire des pâtes au beurre par exemple !
-            </h2>
             </div>
         </div>
     </section>
@@ -20,5 +17,7 @@ export default {
 </script>
 
 <style>
-
+.little-header{
+    padding: 1rem 1rem !important;
+}
 </style>

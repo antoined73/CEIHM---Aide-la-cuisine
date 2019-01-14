@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <p class="test">Did not found the URL</p>
+        <p class="test">URL non trouvée</p>
     </div>
 </template>
 

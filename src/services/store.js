@@ -120,6 +120,8 @@ const store = new Vuex.Store({
                 image: coquillettes_au_beurre
             }
         ]
+        ,
+        currentFollowedRecipe : null
     },
     getters: {
       getRecipeById: (state) => (id) => {
@@ -128,7 +130,8 @@ const store = new Vuex.Store({
       },
       getRecipeStepOfRecipe: (state, getters) => (recipeId, stepId) => {
         const recipe = getters.getRecipeById(recipeId);
-        const step = recipe.steps.find(s => s.number == stepId);
+        var step = null;
+        if(recipe.steps) step = recipe.steps.find(s => s.number == stepId);
         return step;
       },
       getIngredientsOfRecipe: (state, getters) => (id) => {

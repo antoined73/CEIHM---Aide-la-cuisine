@@ -2,7 +2,7 @@
     <div>
         <!-- If recipe exist -->
         <router-view v-if="recipe"/>
-        <Navigation/>
+        <Navigation :recipe="recipe"/>
 
         <!-- If recipe doesn't exist -->
         <div v-if="!recipe" class="section">

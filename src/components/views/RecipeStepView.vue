@@ -35,12 +35,15 @@ export default {
     data(){
         return {
             recipe: Object,
-            recipeStep : Object
         }
     },
     created(){
         this.recipe = this.$store.getters.getRecipeById(this.$route.params.recipeID);
-        this.recipeStep = this.$store.getters.getRecipeStepOfRecipe(this.$route.params.recipeID, this.$route.params.stepID);
+    },
+    computed:{
+        recipeStep(){
+            return this.$store.getters.getRecipeStepOfRecipe(this.$route.params.recipeID, this.$route.params.stepID);
+        }
     },
     methods: {
         clickBackHomeRecipeBtn(){

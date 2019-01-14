@@ -16,7 +16,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .little-header{
     padding: 1rem 1rem !important;
 }

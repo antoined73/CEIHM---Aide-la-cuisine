@@ -1,6 +1,6 @@
 <template>
     <section class= "video-section">
-        <Video v-bind:videoId="recipe.videoId"/>
+        <Video :videoId="recipe.videoId" :videoTimestamp="10"/>
     </section>
     
 </template>

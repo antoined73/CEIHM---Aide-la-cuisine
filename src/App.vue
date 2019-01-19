@@ -1,18 +1,14 @@
 <template>
-  <div id="app">
-    <Header/>
-    <router-view></router-view>
+  <div id="app" style="overflow: hidden;">
+    <transition name="fade">
+      <router-view></router-view>
+    </transition>
   </div>
 </template>
 
 <script>
-import Header from './components/Header.vue'
-
 export default {
-  name: 'app',
-  components: {
-    Header
-  }
+  name: 'app'
 }
 </script>
 

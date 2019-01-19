@@ -4,9 +4,9 @@
             <img :src="recipe.image" alt="Placeholder image">
         </figure>
         <div class="box">
-            <div class="media-content">
-                <p class="title is-4">{{recipe.name}}</p>
-                <p class="subtitle is-6">{{recipe.description}}</p>
+            <div class="media-content is-clipped is-unselectable">
+                <p class="title is-size-4 is-size-6-touch">{{recipe.name}}</p>
+                <p class="subtitle is-size-6-desktop is-size-7-touch">{{recipe.description}}</p>
             </div>
         </div>
     </div>
@@ -21,6 +21,7 @@ export default {
     methods: {
         recipeClicked(){
             this.$router.push('recipe/'+this.recipe.id);
+            this.$follower.startRecipe(this.recipe);
         }
     }
 }

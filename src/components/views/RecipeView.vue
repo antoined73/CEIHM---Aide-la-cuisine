@@ -1,33 +1,41 @@
 <template>
-    <div v-if="recipe">
-        <p>{{this.recipe.name}}</p>
-        <a @click="linkToVideo()">Go to the video helper</a>
+    <div>
+        <Navigation :recipe="recipe"/>
+
+        <!-- If recipe exist -->
+        <router-view v-if="recipe"/>
+
+        <!-- If recipe doesn't exist -->
+        <div v-if="!recipe" class="section">
+            <div class="notification has-text-centered">
+                <p class="title is-size-4">La recette que tu cherches n'existe pas ou n'existe plus..</p>
+                <a class="button is-large is-primary" @click="clickBackHomeButton()">Retourner à l'accueil</a>
+            </div>
+        </div>
     </div>
-    <div v-else>
-        <p>The recipe you are searching for doesn't exist or is no longer available :(</p>
-    </div>
+    
 </template>
 
 <script>
+import Navigation from '../Navigation.vue';
+
 export default {
     name: 'RecipeView',
-    methods: {
-        linkToVideo(){
-            this.$router.push('/recipeVideo/'+this.recipe.id);
-        }
+    components: {
+        Navigation
     },
-
     data(){
         return {
             recipe: Object
         }
     },
     created(){
-        this.recipe = this.$store.getters.getRecipeById(this.$route.params.id);
+        this.recipe = this.$store.getters.getRecipeById(this.$route.params.recipeID);
+    },
+    methods : {
+        clickBackHomeButton(){
+            this.$router.push("/");
+        }
     }
 }
 </script>
-
-<style>
-
-</style>

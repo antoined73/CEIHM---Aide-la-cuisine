@@ -1,15 +1,11 @@
-<!--https://scotch.io/bar-talk/build-a-pomodoro-timer-with-vuejs-solution-to-code-challenge-6-->
 <template>
-    <!-- our template -->
     <div>
         <div id="timer">
             <span id="minutes">{{timer.getMinutes()}}</span>
             <span id="middle">:</span>
             <span id="seconds">{{timer.getSeconds()}}</span>
         </div>
-
         <div id="buttons">
-
             <!--  START BUTTON    -->
             <button
                     class="button is-dark is-large"
@@ -17,7 +13,6 @@
                     @click="start">
                 <i class="far fa-play-circle"></i>
             </button>
-
             <!--   PAUSE BUTTON   -->
             <button
                     class="button is-dark is-large"
@@ -25,7 +20,6 @@
                     @click="stop">
                 <i class="far fa-pause-circle"></i>
             </button>
-
             <!--RESET BUTTON   -->
             <button
                     class="button is-dark is-large"
@@ -34,15 +28,12 @@
                 <i class="fas fa-undo"></i>
             </button>
         </div>
-
     </div>
-
 </template>
 
 <script>
-
-    import Timer from '../services/timer';
-    import VocalRecognition from '../services/vocal-regognition';
+    import Timer from '../services/timer.js';
+    import VocalRecognition from '../services/vocal-recognition.js';
 
     VocalRecognition.initContext({
         'Démarer': () => {

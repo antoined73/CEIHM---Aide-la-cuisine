@@ -1,23 +1,21 @@
 <template>
-    <div class="section">
-        <RecipeList/>
+    <div>
+        <HomeHeader/>
+        <div class="section">
+            <RecipeList/>
+        </div>
     </div>
 </template>
 
 <script>
-import RecipeList from '../RecipeList.vue'
+import HomeHeader from '../headers/HomeHeader.vue'
+import RecipeList from '../recipes/RecipeList.vue'
 
 export default {
   name: 'AccueilView',
   components: {
-      RecipeList
+      RecipeList,
+      HomeHeader
   }
 }
 </script>
-
-<style lang="scss">
-$color: red;
-.test{
-    color: $color;
-}
-</style>

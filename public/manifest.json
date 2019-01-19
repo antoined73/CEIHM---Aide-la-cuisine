@@ -1,0 +1,15 @@
+{
+    "name": "Aide à la cuisine",
+    "short_name": "Cuisine",
+    "start_url": "home",
+    "display": "fullscreen",
+    "theme_color": "#0476F2",
+    "background_color": "#fff",    
+    "icons": [
+      {
+        "src": "icons/chef_512_logo_black.png", 
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ]
+}

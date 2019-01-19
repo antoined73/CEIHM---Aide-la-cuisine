@@ -2,11 +2,12 @@
 <div class="view-container">
     <RecipeStepHeader :recipe="this.recipe"/>
     <!-- If step exist -->
-    <div class="section section-little" v-if="this.recipeStep" name="slide">
+    <div class="section section-little" v-if="this.recipeStep">
         <div class="notification has-text-centered">
             <p class="title is-size-4">Étape {{this.recipeStep.number}}</p>
             <p class="is-size-8">{{this.recipeStep.description}}</p>
-            <a v-if="this.recipeStep.video" @click="linkToVideo()">Voir la vidéo explicative</a>
+            <br>
+            <button class="button is-primary" v-if="this.recipeStep.video" @click="linkToVideo()">Voir la vidéo explicative</button>
         </div>
     </div>
     <!-- If step doesn't exist -->

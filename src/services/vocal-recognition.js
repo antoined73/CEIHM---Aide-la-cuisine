@@ -22,8 +22,7 @@ export default {
         }
         commands = context;
 
-        //TODO : Decomment those line and make it run with router : conflict with webpack ?
-        // annyang.addCommands(context);
-        // annyang.start();
+        annyang.addCommands(context);
+        annyang.start();
     }
 }

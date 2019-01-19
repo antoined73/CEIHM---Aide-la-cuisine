@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="view-container">
     <RecipeHomeHeader :recipe="this.recipe"/>
     <div class="section has-text-centered has-background-white-bis section-little">
         <p class="title is-size-4">Je cuisine pour 4 personnes</p>

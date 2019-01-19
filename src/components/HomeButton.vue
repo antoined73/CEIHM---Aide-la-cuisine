@@ -1,5 +1,5 @@
 <template>
-    <a class="button is-radiusless is-inverted is-outlined is-medium is-primary is-paddingless" @click="homeBtnClicked()">
+    <a class="button is-radiusless is-medium is-primary is-paddingless" @click="homeBtnClicked()">
         <span class="icon is-small is-marginless is-paddingless move-right">
             <i class="fas fa-chevron-left"></i>
         </span>

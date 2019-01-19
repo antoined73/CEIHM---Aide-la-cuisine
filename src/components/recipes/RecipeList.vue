@@ -2,7 +2,8 @@
     <div class="notification">
         <h1 class="title">Recettes</h1>
         <div class="columns is-mobile is-multiline">
-            <div class="column is-full-mobile is-4-tablet is-3-desktop" v-for="(r,i) in recipes" :key="i">
+            <div class="column is-full-mobile is-6-tablet is-4-desktop is-3-widescreen" 
+            v-for="(r,i) in recipes" :key="i">
                 <RecipeItem :recipe="r"/>
             </div>
         </div>
@@ -19,11 +20,10 @@ export default {
     computed: {
         recipes(){
             return this.$store.state.recipes;
-        } 
+        }
     }
 }
 </script>
 
 <style>
-
 </style>

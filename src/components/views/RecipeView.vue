@@ -1,8 +1,9 @@
 <template>
     <div>
+        <Navigation :recipe="recipe"/>
+
         <!-- If recipe exist -->
         <router-view v-if="recipe"/>
-        <Navigation :recipe="recipe"/>
 
         <!-- If recipe doesn't exist -->
         <div v-if="!recipe" class="section">

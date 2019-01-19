@@ -1,8 +1,8 @@
 <template>
-<div>
+<div class="view-container">
     <RecipeStepHeader :recipe="this.recipe"/>
     <!-- If step exist -->
-    <div class="section section-little" v-if="this.recipeStep">
+    <div class="section section-little" v-if="this.recipeStep" name="slide">
         <div class="notification has-text-centered">
             <p class="title is-size-4">Étape {{this.recipeStep.number}}</p>
             <p class="is-size-8">{{this.recipeStep.description}}</p>

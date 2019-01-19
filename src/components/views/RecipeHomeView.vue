@@ -1,7 +1,6 @@
 <template>
 <div class="view-container">
-    <RecipeHomeHeader :recipe="this.recipe"/>
-    <div class="section has-text-centered has-background-white-bis section-little">
+    <div class="section has-text-centered section-little">
         <p class="title is-size-4">Je cuisine pour 4 personnes</p>
         <IngredientList :recipe="this.recipe"/>
     </div>
@@ -9,13 +8,11 @@
 </template>
 
 <script>
-import RecipeHomeHeader from '../headers/RecipeHomeHeader.vue'
 import IngredientList from '../ingredients/IngredientList.vue'
 
 export default {
     components:{
-        IngredientList,
-        RecipeHomeHeader
+        IngredientList
     },
     data(){
         return {

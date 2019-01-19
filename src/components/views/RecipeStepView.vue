@@ -1,6 +1,5 @@
 <template>
 <div class="view-container">
-    <RecipeStepHeader :recipe="this.recipe"/>
     <!-- If step exist -->
     <div class="section section-little" v-if="this.recipeStep">
         <div class="notification has-text-centered">
@@ -20,7 +19,7 @@
                 n'existe pas ou n'existe plus !
             </p>
             <br>
-            <a class="button is-large is-primary" @click="clickBackHomeRecipeBtn()">Retourner au début de la recette</a>
+            <a class="button is-large is-primary" @click="this.clickBackHomeRecipeBtn()">Retourner au début de la recette</a>
         </div>
     </div>
     
@@ -28,31 +27,27 @@
 </template>
 
 <script>
-import RecipeStepHeader from '../headers/RecipeStepHeader.vue'
-
 export default {
-    components:{
-        RecipeStepHeader
-    },
     data(){
         return {
             recipe: Object,
+            recipeStep : Object
         }
     },
     created(){
-        this.recipe = this.$store.getters.getRecipeById(this.$route.params.recipeID);
-    },
-    computed:{
-        recipeStep(){
-            return this.$store.getters.getRecipeStepOfRecipe(this.$route.params.recipeID, this.$route.params.stepID);
-        }
+        this.recipe = this.$follower.currentRecipeFollowed;
+        this.recipeStep = this.$follower.currentStep;
+
+        this.$follower.subscribeCallbackOnStepChange((newStep) => {
+            this.recipeStep = newStep;
+        });
     },
     methods: {
         clickBackHomeRecipeBtn(){
-            this.$router.push("/recipe/"+this.$route.params.recipeID);
+            this.$follower.goToHomeRecipe();
         },
         linkToVideo(){
-            this.$router.push(this.recipeStep.number+"/video");
+            this.$follower.goToVideo();
         }
     }
 }

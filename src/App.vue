@@ -1,6 +1,9 @@
 <template>
   <div id="app" style="overflow: hidden;">
-    <transition name="fade">
+    <transition
+      mode="out-in"
+      enter-active-class="animated fadeIn"
+      leave-active-class="animated fadeOut">
       <router-view></router-view>
     </transition>
   </div>

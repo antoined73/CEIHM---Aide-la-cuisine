@@ -24,7 +24,8 @@ const routes = [
         },
         {
           path: 'step/:stepID',
-          component: RecipeStepView
+          component: RecipeStepView,
+          meta: {key: ':stepID' }
         }
       ]
     },

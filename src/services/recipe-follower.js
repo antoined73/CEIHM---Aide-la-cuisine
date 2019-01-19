@@ -2,6 +2,7 @@ export default class RecipeFollower {
     currentRecipeFollowed = null;
     currentStep = null;
     currentStepIndex = -1;
+    callback = null;
 
     constructor(store, router) {
         this.store = store;
@@ -12,6 +13,7 @@ export default class RecipeFollower {
     startRecipe(recipe){
         this.currentRecipeFollowed = recipe;
         this.currentStepIndex = -1;
+        this.router.push('recipe/'+this.currentRecipeFollowed.id);
     }
 
     updateRecipeAndStep(){
@@ -30,20 +32,15 @@ export default class RecipeFollower {
         if(this.canGoNextStep()){
             this.currentStepIndex++;
             this.updateCurrentStep();
-            this.router.push('/recipe/'+this.currentRecipeFollowed.id+'/step/'+this.currentStep.number);
+            this.changeRoute();
         }
     }
 
     goPreviousStep(){
         if(this.canGoPreviousStep()){
             this.currentStepIndex--;
-            if(this.currentStepIndex==-1){
-                this.currentStep = null;
-                this.router.push('/recipe/'+this.currentRecipeFollowed.id);
-            }else{
-                this.updateCurrentStep();
-                this.router.push('/recipe/'+this.currentRecipeFollowed.id+'/step/'+this.currentStep.number);
-            }
+            this.updateCurrentStep();
+            this.changeRoute();
         }
     }
 
@@ -65,5 +62,33 @@ export default class RecipeFollower {
         {
             this.currentStep = this.currentRecipeFollowed.steps[this.currentStepIndex];
         }
+        if(this.callback) this.callback(this.currentStep);
+    }
+
+    changeRoute(){
+        if(this.currentStepIndex==-1){
+            this.router.push('/recipe/'+this.currentRecipeFollowed.id);
+        }else{
+            this.router.push('/recipe/'+this.currentRecipeFollowed.id+'/step/'+this.currentStep.number);
+        }
+    }
+
+    goToHomeRecipe(){
+        this.router.push("/recipe/"+this.currentRecipeFollowed.id);
+    }
+
+    goToVideo(){
+        this.router.push(this.recipeStep.number+"/video");
+    }
+
+    stopFollowingRecipe(){
+        this.currentRecipeFollowed = null;
+        this.currentStep = null;
+        this.currentStepIndex = -1;
+        this.router.push("/home");
+    }
+
+    subscribeCallbackOnStepChange(callback){
+        this.callback = callback;
     }
 }

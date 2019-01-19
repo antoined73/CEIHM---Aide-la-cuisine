@@ -6,6 +6,7 @@
         <div class="notification has-text-centered">
             <p class="title is-size-4">Étape {{this.recipeStep.number}}</p>
             <p class="is-size-8">{{this.recipeStep.description}}</p>
+            <a v-if="this.recipeStep.video" @click="linkToVideo()">Voir la vidéo explicative</a>
         </div>
     </div>
     <!-- If step doesn't exist -->
@@ -48,6 +49,9 @@ export default {
     methods: {
         clickBackHomeRecipeBtn(){
             this.$router.push("/recipe/"+this.$route.params.recipeID);
+        },
+        linkToVideo(){
+            this.$router.push(this.recipeStep.number+"/video");
         }
     }
 }

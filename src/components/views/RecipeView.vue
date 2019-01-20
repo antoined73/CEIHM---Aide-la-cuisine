@@ -1,9 +1,15 @@
 <template>
     <div>
-        <Navigation :recipe="recipe"/>
+        <Navigation :recipe="recipe" @OnClickLeftBtn="clickLeftBtn" @OnClickRightBtn="clickRightBtn"/>
+        <RecipeStepHeader :recipe="this.recipe"/>
 
         <!-- If recipe exist -->
-        <router-view v-if="recipe"/>
+        <transition
+        :enter-active-class="'animated '+enterAnimationName"
+        :leave-active-class="'animated '+leaveAnimationName"
+        mode="out-in"> 
+            <router-view v-if="recipe" :key="$route.path"/>
+        </transition>
 
         <!-- If recipe doesn't exist -->
         <div v-if="!recipe" class="section">
@@ -17,24 +23,36 @@
 </template>
 
 <script>
+import RecipeStepHeader from '../headers/RecipeStepHeader.vue'
 import Navigation from '../Navigation.vue';
 
 export default {
     name: 'RecipeView',
     components: {
-        Navigation
+        Navigation,
+        RecipeStepHeader
     },
     data(){
         return {
-            recipe: Object
+            recipe: Object,
+            enterAnimationName : 'slideInRight',
+            leaveAnimationName : 'slideOutLeft'
         }
     },
     created(){
-        this.recipe = this.$store.getters.getRecipeById(this.$route.params.recipeID);
+        this.recipe = this.$follower.currentRecipeFollowed;
     },
     methods : {
         clickBackHomeButton(){
-            this.$router.push("/");
+            this.$follower.stopFollowingRecipe();
+        },
+        clickLeftBtn(){
+            this.enterAnimationName = "slideInLeft";
+            this.leaveAnimationName = "slideOutRight";
+        },
+        clickRightBtn(){
+            this.enterAnimationName = "slideInRight";
+            this.leaveAnimationName = "slideOutLeft";
         }
     }
 }

@@ -1,6 +1,6 @@
 <template>
     <section class="hero is-primary">
-        <div class="hero-body is-paddingless">
+        <div class="hero-body" :class="{'is-paddingless' : this.recipe}">
             <!-- If recipe exist -->
             <div v-if="recipe" class="container">
                 <div class="level is-mobile">

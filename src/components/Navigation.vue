@@ -38,17 +38,14 @@ export default {
             canGoRight : false
         }
     },
-    watch : {
-        recipe(){
-            this.$follower.startRecipe(this.recipe);
-        }
-    },
     methods : {
         clickRightBtn(){
+            this.$emit("OnClickRightBtn");
             this.$follower.goNextStep();
             this.updateFlags();
         },
         clickLeftBtn(){
+            this.$emit("OnClickLeftBtn");
             this.$follower.goPreviousStep();
             this.updateFlags();
         },

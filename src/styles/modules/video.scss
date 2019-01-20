@@ -1,5 +1,6 @@
 section.video-section {
     display: flex;
+    flex-direction: column;
     width: 100%;
     height: 100%;
     padding: 20px 20px 20px 20px;
@@ -8,16 +9,8 @@ section.video-section {
         display: flex;
         width: 100%;
         justify-content: center;
+        align-items: center;
         position: relative;
-
-        & .helper {
-            position:absolute;
-            top:0;
-            left:50%;
-            width:50px;
-            height:40px;
-            background-color: red;
-        }
 
         & .flex-column{
             display: flex;

@@ -1,0 +1,45 @@
+.helper {
+    position:absolute;
+    width: $helper-width;
+    height:auto;
+    color: $blue;
+    background-color: rgba(255, 255, 255, 0.7);
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    font-size: 16px;
+    cursor: pointer;
+    &.top {
+        top:0;
+        left: calc(50% - $helper-width-divided);
+    }
+    &.left {
+        top: 50%;
+        left: 0;
+    }
+    &.right {
+        top:50%;
+        right: 0;
+    }
+    &.down {
+        bottom:0;
+        left: calc(50% - $helper-width-divided);
+    }
+    & .column-center {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        flex-direction: column;
+    }
+    & .line-space {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        & .child1 {
+            margin-right: 3px;
+        }
+        & .child2 {
+            margin-left: 3px;
+        }
+    }
+}

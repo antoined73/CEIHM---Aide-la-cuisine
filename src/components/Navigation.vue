@@ -1,32 +1,29 @@
 <template>
-    <div class="ontop">
-        <div class="level is-mobile">
-            <!-- Left side -->
-            <div class="level-left">
-                <div class="level-item interactable-item">
-                    <a class="button is-inverted is-medium is-primary is-opacity-50" @click="clickLeftBtn()"
-                       v-if="canGoLeft">
-                    <span class="icon is-medium">
-                    <font-awesome-icon icon="chevron-left" size="2x"/>
-                    </span>
-                    </a>
-                </div>
+<div class="ontop">
+    <div class="level is-mobile">
+        <!-- Left side -->
+        <div class="level-left">
+            <div class="level-item interactable-item">
+                    <a class="button is-inverted is-medium is-primary is-opacity-50" @click="clickLeftBtn()" v-if="canGoLeft">
+                    
+                    <font-awesome-icon icon="chevron-left" size="2x" />
+                    
+                </a>
             </div>
+        </div>
 
-            <!-- Right side -->
-            <div class="level-right">
-                <div class="level-item interactable-item">
-                    <a class="button is-inverted is-medium is-primary is-opacity-50" @click="clickRightBtn()"
-                       v-if="canGoRight">
-                    <span class="icon is-medium">
-                    <font-awesome-icon icon="chevron-right" size="2x"/>
-                    </span>
-                    </a>
-                </div>
+        <!-- Right side -->
+        <div class="level-right">
+            <div class="level-item interactable-item">
+                    <a class="button is-inverted is-medium is-primary is-opacity-50" @click="clickRightBtn()" v-if="canGoRight">
+                    
+                    <font-awesome-icon icon="chevron-right" size="2x" />
+                    
+                </a>
             </div>
         </div>
     </div>
-
+</div>
 </template>
 
 <script>

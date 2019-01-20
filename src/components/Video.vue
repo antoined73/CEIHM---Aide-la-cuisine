@@ -49,33 +49,32 @@ export default {
             return this.$refs.youtube.player;
         }
     },
+    created() {
+        VocalRecognition.initContext({
+            "avancer": () => {
+                this.player.getCurrentTime().then(value => {
+                    this.player.seekTo(value + 10, true);
+                });
+            }, "reculer": () => {
+                this.player.getCurrentTime().then(value => {
+                    this.player.seekTo(value - 10, true);
+                });
+            },
+            "pause": () => {
+                this.player.pauseVideo();
+            },
+            "play": () => {
+                this.player.playVideo();
+            },
+            "retour": () => {
+                this.returnRecipe();
+            }
+        });
+    },
     methods: {
         playVideo() {
             this.player.seekTo(this.videoTimestamp, true);
             this.player.playVideo()
-        },
-        created() {
-            VocalRecognition.initContext({
-                "avancer": () => {
-                    this.player.getCurrentTime().then(value => {
-                        this.player.seekTo(value + 10, true);
-                    });
-                }, "reculer": () => {
-                    this.player.getCurrentTime().then(value => {
-                        this.player.seekTo(value - 10, true);
-                    });
-                },
-                "pause": () => {
-                    this.player.pauseVideo();
-                },
-                "play": () => {
-                    this.player.playVideo();
-                },
-                "retour": () => {
-                    //TODO: add back to receipe
-                    console.log("back");
-                }
-            });
         },
         playingVideo() {
             this.playing = true;

@@ -1,15 +1,24 @@
 <template>
 
+<section class= "video-section">
     <section class="video-player">
-        <youtube :video-id="videoId" :player-vars="playerVars" :resize="true" :fitParent="true" ref="youtube" @ready="playVideo" @playing="playingVideo" @paused="pausedVideo"></youtube>
-        <div class="flex-column">
-            <a class="button is-primary" @click="play()" v-if="!playing">Play</a>
-            <a class="button is-primary" @click="pause()" v-if="playing">Pause</a>
-            <a class="button is-secondary" @click="forward()">Avancer</a>
-            <a class="button is-secondary" @click="backward()">Reculer</a>
+        <youtube :video-id="videoId" :player-vars="playerVars" :resize="true" 
+        :fitParent="true" ref="youtube" @ready="playVideo" @playing="playingVideo" 
+        @paused="pausedVideo"></youtube>
+        <div class="helper-back">
+            <img src="@/assets/images/hand-gesture-up.png"
+            alt="retour" />
         </div>
-        
     </section>
+
+    <div class="flex-column">
+        <a class="button is-primary" @click="play()" v-if="!playing">Play</a>
+        <a class="button is-primary" @click="pause()" v-if="playing">Pause</a>
+        <a class="button is-secondary" @click="forward()">Avancer</a>
+        <a class="button is-secondary" @click="backward()">Reculer</a>
+    </div>
+
+</section>
     
 </template>
 

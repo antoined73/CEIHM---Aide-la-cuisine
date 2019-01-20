@@ -1,7 +1,5 @@
 <template>
-    <section class= "video-section">
-        <Video :videoId="step.video.id" :videoTimestamp="step.video.timestampStep"/>
-    </section>
+    <Video :videoId="step.video.id" :videoTimestamp="step.video.timestampStep"/>
     
 </template>
 

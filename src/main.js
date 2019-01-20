@@ -5,6 +5,9 @@ import store from './services/store.js'
 import Buefy from 'buefy'
 import VueYoutube from 'vue-youtube'
 
+export const serverBus = new Vue();
+
+
 Vue.config.productionTip = false
 
 // Buefy 

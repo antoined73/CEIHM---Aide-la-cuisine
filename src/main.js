@@ -32,7 +32,7 @@ library.add(
   faChevronDown,
   faPlayCircle,
   faPauseCircle,
-  faUndo
+  faUndo,
   faStopwatch
 )
 

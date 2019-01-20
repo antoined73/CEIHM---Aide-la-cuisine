@@ -92,16 +92,23 @@ export default {
   },
   created() {
     VocalRecognition.initContext({
-      Démarrer: () => {
+      "démarrer": () => {
         Timer.start(5);
         this.isFinished = false;
       },
-      Stop: () => {
+      "stop": () => {
         Timer.stop();
       },
-      Recommencer: () => {
+      "recommencer": () => {
         Timer.clear();
-      }
+      },
+        "ajouter": () => {
+          console.log("AJOUTER")
+        this.addTimeButtonClicked();
+        }, "enlever" : () => {
+            console.log("ENLEVER")
+          this.removeTimeButtonClicked();
+       }
     });
     this.timer.setTickCallback(() => {});
     this.timer.setEndCallback(() => {

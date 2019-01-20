@@ -1,10 +1,10 @@
 <template>
-    <a class="button is-radiusless is-medium is-primary is-paddingless" @click="homeBtnClicked()">
+    <a class="button is-radiusless is-medium is-primary is-paddingless" @click="clockBtnClicked()">
         <span class="icon is-small is-marginless is-paddingless move-right">
-            <font-awesome-icon icon="chevron-left" />
+            <font-awesome-icon icon="chevron-up" />
         </span>
         <span class="icon is-small is-marginless is-paddingless move-left">
-            <font-awesome-icon icon="home" />
+            <font-awesome-icon icon="stopwatch" />
         </span>
     </a>
 </template>
@@ -12,8 +12,8 @@
 <script>
 export default {
     methods : {
-        homeBtnClicked(){
-            this.$follower.stopFollowingRecipe();
+        clockBtnClicked(){
+            this.$follower.goToChrono();
         }
     }
 }

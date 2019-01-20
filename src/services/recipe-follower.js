@@ -2,7 +2,9 @@ export default class RecipeFollower {
     currentRecipeFollowed = null;
     currentStep = null;
     currentStepIndex = -1;
-    callback = null;
+    onStepChangeCallbacks = [];
+    chronoLaunched = false;
+    chronoAvailable = false;
 
     constructor(store, router) {
         this.store = store;
@@ -61,8 +63,15 @@ export default class RecipeFollower {
         && this.currentStepIndex < this.currentRecipeFollowed.steps.length))
         {
             this.currentStep = this.currentRecipeFollowed.steps[this.currentStepIndex];
+            if(this.currentStep) this.chronoAvailable = this.currentStep.chrono!=null;
         }
-        if(this.callback) this.callback(this.currentStep);
+        this.notify();
+    }
+
+    notify(){
+        this.onStepChangeCallbacks.forEach(callback => {
+            if(callback) callback(this.currentStep);
+        });
     }
 
     changeRoute(){
@@ -78,7 +87,11 @@ export default class RecipeFollower {
     }
 
     goToVideo(){
-        this.router.push(this.recipeStep.number+"/video");
+        this.router.push(this.currentStep.number+"/video");
+    }
+
+    quitVideo(){
+         this.router.go(-1);
     }
 
     stopFollowingRecipe(){
@@ -88,7 +101,15 @@ export default class RecipeFollower {
         this.router.push("/home");
     }
 
-    subscribeCallbackOnStepChange(callback){
-        this.callback = callback;
+    subscribeOnStepChangeCallback(callback){
+        this.onStepChangeCallbacks.push(callback);
+    }
+
+    goToChrono(){
+        this.router.push(this.currentStep.number+"/chrono");
+    }
+
+    quitChrono(){
+         this.router.go(-1);
     }
 }

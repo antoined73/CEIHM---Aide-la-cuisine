@@ -57,7 +57,8 @@ const store = new Vuex.Store({
                         video: {
                             id: "9_5wHw6l11o",
                             timestampStep : 0
-                        }
+                        },
+                        chrono : null
                     },
                     {
                         number: 1,
@@ -65,7 +66,8 @@ const store = new Vuex.Store({
                         video: {
                             id: "9_5wHw6l11o",
                             timestampStep : 10
-                        }
+                        },
+                        chrono : null
                     },
                     {
                         number: 2,
@@ -73,6 +75,9 @@ const store = new Vuex.Store({
                         video: {
                             id: "9_5wHw6l11o",
                             timestampStep : 25
+                        },
+                        chrono : {
+                            startTimeInSeconds: 50
                         }
                     }
                 ]

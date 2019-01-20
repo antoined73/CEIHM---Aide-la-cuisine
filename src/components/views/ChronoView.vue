@@ -2,12 +2,9 @@
 <div class="view-container">
     <!-- If step exist -->
     <div class="section section-little" v-if="this.recipeStep">
+        <a class="button is-large is-primary" @click="clickBack">Fermer chrono</a>
         <div class="notification has-text-centered">
-            <p class="title is-size-4">Étape {{this.recipeStep.number}}</p>
-            <p class="is-size-8">{{this.recipeStep.description}}</p>
-            <br>
-            <!-- <button class="button is-primary" v-if="this.recipeStep.chrono" @click="linkToChrono()">Lancer le chrono</button> -->
-            <button class="button is-primary" v-if="this.recipeStep.video" @click="linkToVideo()">Voir la vidéo explicative</button>
+            <Timer/>
         </div>
     </div>
     <!-- If step doesn't exist -->
@@ -28,7 +25,12 @@
 </template>
 
 <script>
+import Timer from "../Timer.vue";
+
 export default {
+    components: {
+        Timer
+    },
     data(){
         return {
             recipe: Object,
@@ -36,26 +38,27 @@ export default {
         }
     },
     created(){
-
         this.recipe = this.$follower.currentRecipeFollowed;
         this.recipeStep = this.$follower.currentStep;
 
         this.$follower.subscribeOnStepChangeCallback((newStep) => {
             this.recipeStep = newStep;
         });
-
-        
     },
     methods: {
         clickBackHomeRecipeBtn(){
             this.$follower.goToHomeRecipe();
         },
+        clickBack(){
+            this.$follower.quitChrono();
+        },
         linkToVideo(){
             this.$follower.goToVideo();
-        },
-        linkToChrono(){
-            this.$follower.goToChrono();
         }
     }
 }
 </script>
+
+<style>
+
+</style>

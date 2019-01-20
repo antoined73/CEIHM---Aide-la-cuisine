@@ -1,76 +1,100 @@
 <template>
 
-<section class= "video-section">
-    <section class="video-player">
-        <youtube :video-id="videoId" :player-vars="playerVars" :resize="true" 
-        :fitParent="true" ref="youtube" @ready="playVideo" @playing="playingVideo" 
-        @paused="pausedVideo"></youtube>
-        <div class="helper-back">
-            <img src="@/assets/images/hand-gesture-up.png"
-            alt="retour" />
+    <section class="video-section">
+        <section class="video-player">
+            <youtube :video-id="videoId" :player-vars="playerVars" :resize="true"
+                     :fitParent="true" ref="youtube" @ready="playVideo" @playing="playingVideo"
+                     @paused="pausedVideo"></youtube>
+            <div class="helper-back">
+                <img src="@/assets/images/hand-gesture-up.png"
+                     alt="retour"/>
+            </div>
+        </section>
+
+        <div class="flex-column">
+            <a class="button is-primary" @click="play()" v-if="!playing">Play</a>
+            <a class="button is-primary" @click="pause()" v-if="playing">Pause</a>
+            <a class="button is-secondary" @click="forward()">Avancer</a>
+            <a class="button is-secondary" @click="backward()">Reculer</a>
         </div>
+
     </section>
 
-    <div class="flex-column">
-        <a class="button is-primary" @click="play()" v-if="!playing">Play</a>
-        <a class="button is-primary" @click="pause()" v-if="playing">Pause</a>
-        <a class="button is-secondary" @click="forward()">Avancer</a>
-        <a class="button is-secondary" @click="backward()">Reculer</a>
-    </div>
-
-</section>
-    
 </template>
 
 <script>
+    import VocalRecognition from '../services/vocal-recognition';
 
-export default {
-    name: 'Video',
-    props: ['videoId', 'videoTimestamp'],
-    data() {
-        return {
-            playerVars: {
-                autoplay: 0,
-                origin: "localhost:8080"
+    export default {
+        name: 'Video',
+        props: ['videoId', 'videoTimestamp'],
+        data() {
+            return {
+                playerVars: {
+                    autoplay: 0,
+                    origin: "localhost:8080"
+                },
+                playing: false
+            }
+        },
+        created() {
+            VocalRecognition.initContext({
+                "avancer": () => {
+                    this.player.getCurrentTime().then(value => {
+                        this.player.seekTo(value + 10, true);
+                    });
+                }, "reculer": () => {
+                    this.player.getCurrentTime().then(value => {
+                        this.player.seekTo(value - 10, true);
+                    });
+                },
+                "pause": () => {
+                    this.player.pauseVideo();
+                },
+                "play": () => {
+                    this.player.playVideo();
+                },
+                "retour": () => {
+                    //TODO: add back to receipe
+                    console.log("back");
+                }
+            });
+        },
+        methods: {
+            playVideo() {
+                this.player.seekTo(this.videoTimestamp, true);
+                this.player.playVideo()
             },
-            playing: false
+            playingVideo() {
+                this.playing = true;
+            },
+            pausedVideo() {
+                this.playing = false;
+            },
+            play() {
+                this.player.playVideo();
+            },
+            pause() {
+                this.player.pauseVideo();
+            },
+            forward() {
+                this.player.getCurrentTime().then(value => {
+                    this.player.seekTo(value + 10, true);
+                });
+            },
+            backward() {
+                this.player.getCurrentTime().then(value => {
+                    this.player.seekTo(value - 10, true);
+                });
+            }
+        },
+        computed: {
+            player() {
+                return this.$refs.youtube.player
+            }
         }
-    },
-    methods: {
-        playVideo() {
-            this.player.seekTo(this.videoTimestamp, true);
-            this.player.playVideo()
-        },
-        playingVideo() {
-            this.playing = true;
-        },
-        pausedVideo() {
-            this.playing = false;
-        },
-        play() {
-            this.player.playVideo();
-        },
-        pause() {
-            this.player.pauseVideo();
-        },
-        forward() {
-            this.player.getCurrentTime().then( value => {
-                this.player.seekTo(value + 10, true);
-            });
-        },
-        backward() {
-            this.player.getCurrentTime().then( value => {
-                this.player.seekTo(value - 10, true);
-            });
-        }
-    },
-    computed: {
-        player() {
-            return this.$refs.youtube.player
-        }
-    }
 
-}
+    }
 </script>
 
 <style>

@@ -58,8 +58,8 @@ export default {
 
 <style lang="scss">
 @keyframes blinking {
-  from {background: rgba(0, 174, 255, 0);}
-  to {background: rgba(0, 174, 255, 1);}
+  from {background: rgba(255, 0, 0, 0);}
+  to {background: rgb(255, 0, 0);}
 }
 
 .timer {

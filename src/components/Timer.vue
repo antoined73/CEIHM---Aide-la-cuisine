@@ -37,11 +37,6 @@
       >
         <font-awesome-icon icon="pause-circle"/>
       </button>
-
-      <!--RESET BUTTON   -->
-      <button class="button is-dark is-large" id="reset" @click="resetButtonClicked">
-        <font-awesome-icon icon="undo"/>
-      </button>
     </div>
     <app-timer-widget></app-timer-widget>
   </div>
@@ -56,6 +51,7 @@ export default {
   name: "TimerView",
   props: {},
   components: {
+    // /!\ For test purpose only
     'app-timer-widget': TimerMinimal
   },
   data() {
@@ -83,9 +79,6 @@ export default {
     },
     stopButtonClicked() {
       this.timer.stop();
-    },
-    resetButtonClicked() {
-      this.timer.clear();
     },
     addTimeButtonClicked() {
       this.timer.addTime(5);
@@ -119,6 +112,7 @@ export default {
 </script>
 
 <style lang="scss">
+
 #timer {
   font-size: 100px;
   line-height: 1;

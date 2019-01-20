@@ -7,7 +7,7 @@ import RecipeFollower from './services/recipe-follower.js'
 import VueYoutube from 'vue-youtube'
 import { FontAwesomeIcon, FontAwesomeLayers, FontAwesomeLayersText } from '@fortawesome/vue-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faHome, faChevronRight, faChevronLeft, faMicrophone, faHandPaper, faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons'
+import { faHome, faChevronRight, faChevronLeft, faMicrophone, faHandPaper, faChevronUp, faChevronDown, faStopwatch } from '@fortawesome/free-solid-svg-icons'
 
 
 Vue.config.productionTip = false
@@ -29,7 +29,8 @@ library.add(
   faMicrophone,
   faHandPaper,
   faChevronUp,
-  faChevronDown
+  faChevronDown,
+  faStopwatch
 )
 
 Vue.prototype.$follower = new RecipeFollower(store, router);

@@ -14,6 +14,12 @@
                             </h1>
                         </div>
                     </div>
+
+                    <div class="level-right">
+                        <div v-if="chronoAvailable || chronoLaunched" class="level-item">
+                            <ChronoButton/>
+                        </div>
+                    </div>
                 </div>
             </div>
             
@@ -29,17 +35,34 @@
 
 <script>
 import HomeButton from '../HomeButton.vue'
+import ChronoButton from '../ChronoButton.vue'
 
 export default {
     name: 'RecipeStepHeader',
     components : {
-        HomeButton
+        HomeButton,
+        ChronoButton
     },
     props : {
         recipe : {
             type: Object,
             default: null
         }
+    },
+    data(){
+        return {
+            chronoLaunched : false,
+            chronoAvailable : false
+        }
+    },
+    created(){
+        this.chronoLaunched = this.$follower.chronoLaunched;
+        this.chronoAvailable = this.$follower.chronoAvailable;
+        // eslint-disable-next-line
+        this.$follower.subscribeOnStepChangeCallback((newStep) =>{
+            this.chronoLaunched = this.$follower.chronoLaunched;
+            this.chronoAvailable = this.$follower.chronoAvailable;
+        })
     }
 }
 </script>

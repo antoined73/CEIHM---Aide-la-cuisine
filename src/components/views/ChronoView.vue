@@ -2,10 +2,9 @@
 <div class="view-container">
     <!-- If step exist -->
     <div class="section section-little" v-if="this.recipeStep">
-        <a class="button is-large is-primary" @click="clickBack">Fermer chrono</a>
-        <div class="notification has-text-centered">
+        
             <Timer/>
-        </div>
+        
     </div>
     <!-- If step doesn't exist -->
     <div v-else class="section">

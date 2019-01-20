@@ -1,58 +1,42 @@
 <template>
-  <div class="container">
-    <h2 id="timer-name">{{this.timerName}}</h2>
-    <div class="level">
-      <div class="level-item has-text-centered">
-        <!-- REMOVE 5 MINUTES BUTTON   -->
-        <button class="button is-dark is-large" id="removeTime" @click="removeTimeButtonClicked">-5</button>
-      </div>
-      <div id="timer" class="level-item has-text-centered">
-        <span id="minutes" v-bind:style="[this.isFinished ? {color: 'red'} : {}]">{{this.minutes}}</span>
-        <span id="middle" v-bind:style="[this.isFinished ? {color: 'red'} : {}]">:</span>
-        <span id="seconds" v-bind:style="[this.isFinished ? {color: 'red'} : {}]">{{this.seconds}}</span>
-      </div>
-      <div class="level-item has-text-centered">
-        <!-- ADD 5 MINUTES BUTTON   -->
-        <button class="button is-dark is-large" id="addTime" @click="addTimeButtonClicked">+5</button>
-      </div>
+  <div class="contain">
+    <!-- <h2 id="timer-name">{{this.timerName}}</h2> -->
+    
+    <div id="timer" class="level-item has-text-centered">
+      <span id="minutes" v-bind:style="[this.isFinished ? {color: 'red'} : {}]">{{this.minutes}}</span>
+      <span id="middle" v-bind:style="[this.isFinished ? {color: 'red'} : {}]">:</span>
+      <span id="seconds" v-bind:style="[this.isFinished ? {color: 'red'} : {}]">{{this.seconds}}</span>
     </div>
+    <!-- <app-timer-widget></app-timer-widget> -->
 
-    <div id="timer-buttons">
-      <!--  START BUTTON    -->
-      <button
-        class="button is-dark is-large"
-        id="start"
-        v-if="!this.timer.isRunning || this.timer.isPaused"
-        @click="startButtonClicked"
-      >
-        <font-awesome-icon icon="play-circle"/>
-      </button>
+    <Explanation explanationClass="helper down" text='"Retour"' handDirection="chevron-down" 
+        @onClick="clickBack()"></Explanation>
 
-      <!--   PAUSE BUTTON   -->
-      <button
-        class="button is-dark is-large"
-        id="stop"
-        v-if="this.timer.isRunning"
-        @click="stopButtonClicked"
-      >
-        <font-awesome-icon icon="pause-circle"/>
-      </button>
+    <Explanation explanationClass="helper top" text='"Pause"' handDirection="chevron-up" 
+        @onClick="stopButtonClicked()" v-if="this.timer.isRunning"></Explanation>
+        
+    <Explanation explanationClass="helper top" text='"Démarrer"' handDirection="chevron-up" 
+        @onClick="startButtonClicked()" v-if="!this.timer.isRunning"></Explanation>
+
+    <Explanation explanationClass="helper left" text='"Enlever"' handDirection="chevron-left" @onClick="removeTimeButtonClicked()"></Explanation>
+    
+    <Explanation explanationClass="helper right" text='"Ajouter"' handDirection="chevron-right" @onClick="addTimeButtonClicked()"></Explanation>
     </div>
-    <app-timer-widget></app-timer-widget>
-  </div>
 </template>
 
 <script>
 import Timer from "../services/timer.js";
 import VocalRecognition from "../services/vocal-recognition.js";
 import TimerMinimal from "./TimerMinimal.vue";
+import Explanation from './Explanation.vue'
 
 export default {
   name: "TimerView",
   props: {},
   components: {
     // /!\ For test purpose only
-    'app-timer-widget': TimerMinimal
+    'app-timer-widget': TimerMinimal,
+    Explanation
   },
   data() {
     return {
@@ -81,14 +65,17 @@ export default {
       this.timer.stop();
     },
     addTimeButtonClicked() {
-      this.timer.addTime(5);
+      this.timer.addTime(30);
     },
     removeTimeButtonClicked() {
-      this.timer.removeTime(5);
+      this.timer.removeTime(30);
     },
     padTime(time) {
       return (time < 10 ? "0" : "") + time;
-    }
+    },
+    clickBack(){
+      this.$follower.quitChrono();
+    },
   },
   created() {
     VocalRecognition.initContext({
@@ -96,7 +83,7 @@ export default {
         Timer.start(5);
         this.isFinished = false;
       },
-      "stop": () => {
+      "pause": () => {
         Timer.stop();
       },
       "recommencer": () => {
@@ -120,10 +107,19 @@ export default {
 
 <style lang="scss">
 
+.contain {
+  position: relative;
+}
+
 #timer {
+  background-color: whitesmoke;
   font-size: 100px;
   line-height: 1;
-  margin-bottom: 20px;
+  display: flex;
+  width: 100%;
+  height: 300px;
+  align-items: center;
+  justify-content: center;
 }
 
 #timer-name {

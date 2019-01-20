@@ -17,7 +17,7 @@
 
                     <div class="level-right">
                         <div v-if="chronoAvailable || chronoLaunched" class="level-item">
-                            <ChronoButton/>
+                            <TimerMinimal/>
                         </div>
                     </div>
                 </div>
@@ -36,12 +36,14 @@
 <script>
 import HomeButton from '../HomeButton.vue'
 import ChronoButton from '../ChronoButton.vue'
+import TimerMinimal from '../TimerMinimal.vue'
 
 export default {
     name: 'RecipeStepHeader',
     components : {
         HomeButton,
-        ChronoButton
+        ChronoButton,
+        TimerMinimal
     },
     props : {
         recipe : {

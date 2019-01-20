@@ -1,5 +1,5 @@
 class Timer {
-  duration = 0;
+  duration = 50;
   isRunning = false;
   isPaused = false;
   tickCallback = null;

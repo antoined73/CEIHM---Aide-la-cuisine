@@ -58,8 +58,8 @@ export default {
 
 <style lang="scss">
 @keyframes blinking {
-  from {background: rgba(255, 0, 0, 0);}
-  to {background: rgb(255, 0, 0);}
+  from {color: white;}
+  to {color: red;}
 }
 
 .timer {
@@ -68,16 +68,12 @@ export default {
   align-items: center;
   font-size: 30px;
   line-height: 1;
-  background: rgba(0, 174, 255, 1);
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  color: black;
+  color: white;
 }
 
 .blinking {
   animation-name: blinking;
-  animation-duration: 0.5s;
+  animation-duration: 1s;
   animation-iteration-count: infinite;
   animation-direction: alternate;
 }

@@ -6,7 +6,7 @@
             <div class="level-item interactable-item">
                     <a class="button is-inverted is-medium is-primary is-opacity-50" @click="clickLeftBtn()" v-if="canGoLeft">
                     <span class="icon is-medium">
-                    <i class="fas fa-chevron-left fa-2x"></i>
+                    <font-awesome-icon icon="chevron-left" size="2x" />
                     </span>
                 </a>
             </div>
@@ -17,7 +17,7 @@
             <div class="level-item interactable-item">
                     <a class="button is-inverted is-medium is-primary is-opacity-50" @click="clickRightBtn()" v-if="canGoRight">
                     <span class="icon is-medium">
-                    <i class="fas fa-chevron-right fa-2x"></i>
+                    <font-awesome-icon icon="chevron-right" size="2x" />
                     </span>
                 </a>
             </div>

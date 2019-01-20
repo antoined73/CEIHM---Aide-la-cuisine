@@ -8,6 +8,16 @@ section.video-section {
         display: flex;
         width: 100%;
         justify-content: center;
+        position: relative;
+
+        & .helper {
+            position:absolute;
+            top:0;
+            left:50%;
+            width:50px;
+            height:40px;
+            background-color: red;
+        }
 
         & .flex-column{
             display: flex;

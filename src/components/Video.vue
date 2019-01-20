@@ -77,10 +77,6 @@ export default {
                 }
             });
         },
-        playVideo() {
-            this.player.seekTo(this.videoTimestamp, true);
-            this.player.playVideo()
-        },
         playingVideo() {
             this.playing = true;
         },

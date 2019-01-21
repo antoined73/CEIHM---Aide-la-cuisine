@@ -10,6 +10,7 @@ export default {
   methods: {
       communicateDirection(event) {
           this.$events.fire('gest-event', event.direction)
+          console.log(event.direction);
       }
   },
   mounted() {

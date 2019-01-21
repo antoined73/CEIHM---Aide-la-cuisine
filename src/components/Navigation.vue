@@ -83,7 +83,6 @@ export default {
     },
     mounted(){
         this.$events.on('update-navigation-flags', this.updateFlags)
-        this.$follower.updateRecipeAndStep();
         this.updateFlags();
     }
 }

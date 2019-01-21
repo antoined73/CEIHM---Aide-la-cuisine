@@ -3,7 +3,7 @@
     <!-- If step exist -->
     <div class="section section-little" v-if="this.recipeStep">
         
-            <Timer/>
+            <Timer :initial-value="this.getStepChrono()"/>
         
     </div>
     <!-- If step doesn't exist -->
@@ -53,6 +53,13 @@ export default {
         },
         linkToVideo(){
             this.$follower.goToVideo();
+        },
+        getStepChrono() {
+            if (this.$follower.currentStep.chrono) {
+                 return this.$follower.currentStep.chrono.startTimeInSeconds;
+            } else {
+                return 0;
+            }
         }
     }
 }

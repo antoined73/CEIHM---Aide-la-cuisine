@@ -26,8 +26,26 @@
 import RecipeStepHeader from '../headers/RecipeStepHeader.vue'
 import Navigation from '../Navigation.vue';
 
+
 export default {
     name: 'RecipeView',
+    methods: {
+        linkToVideo(){
+            this.$router.push('/recipeVideo/'+this.recipe.id);
+        },
+        
+        clickBackHomeButton(){
+            this.$follower.stopFollowingRecipe();
+        },
+        clickLeftBtn(){
+            this.enterAnimationName = "slideInLeft";
+            this.leaveAnimationName = "slideOutRight";
+        },
+        clickRightBtn(){
+            this.enterAnimationName = "slideInRight";
+            this.leaveAnimationName = "slideOutLeft";
+        }
+    },
     components: {
         Navigation,
         RecipeStepHeader
@@ -42,18 +60,5 @@ export default {
     created(){
         this.recipe = this.$follower.currentRecipeFollowed;
     },
-    methods : {
-        clickBackHomeButton(){
-            this.$follower.stopFollowingRecipe();
-        },
-        clickLeftBtn(){
-            this.enterAnimationName = "slideInLeft";
-            this.leaveAnimationName = "slideOutRight";
-        },
-        clickRightBtn(){
-            this.enterAnimationName = "slideInRight";
-            this.leaveAnimationName = "slideOutLeft";
-        }
-    }
 }
 </script>

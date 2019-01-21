@@ -35,14 +35,12 @@
 
 <script>
 import HomeButton from '../HomeButton.vue'
-import ChronoButton from '../ChronoButton.vue'
 import TimerMinimal from '../TimerMinimal.vue'
 
 export default {
     name: 'RecipeStepHeader',
     components : {
         HomeButton,
-        ChronoButton,
         TimerMinimal
     },
     props : {

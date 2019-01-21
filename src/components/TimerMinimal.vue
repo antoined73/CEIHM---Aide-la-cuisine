@@ -1,7 +1,11 @@
 <template>
   <div class="container">
-    <div class="timer" v-bind:class="[this.timer.getSeconds() < 10 && this.timer.getSeconds() > 0 ? 'blinking' : '']">
-      <span>{{this.minutes}}</span>
+    <div
+      class="timer"
+      v-bind:class="[this.timer.duration < 10 && this.timer.duration > 0 ? 'blinking' : '']"
+      v-bind:style="[this.timer.duration < 0 ? {color: 'red'} : {}]"
+    >
+      <span>{{this.isNegative() + this.minutes}}</span>
       <span>:</span>
       <span>{{this.seconds}}</span>
     </div>
@@ -32,6 +36,9 @@ export default {
   methods: {
     padTime(time) {
       return (time < 10 ? "0" : "") + time;
+    },
+    isNegative() {
+      return this.timer.duration < 0 ? "-" : "";
     }
   },
   created() {
@@ -58,8 +65,12 @@ export default {
 
 <style lang="scss">
 @keyframes blinking {
-  from {color: white;}
-  to {color: red;}
+  from {
+    color: white;
+  }
+  to {
+    color: red;
+  }
 }
 
 .timer {
@@ -73,7 +84,7 @@ export default {
 
 .blinking {
   animation-name: blinking;
-  animation-duration: 1s;
+  animation-duration: 0.5s;
   animation-iteration-count: infinite;
   animation-direction: alternate;
 }

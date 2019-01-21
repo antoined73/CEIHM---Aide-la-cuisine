@@ -1,41 +1,64 @@
 <template>
   <div class="contain">
     <!-- <h2 id="timer-name">{{this.timerName}}</h2> -->
-    
-    <div id="timer" class="level-item has-text-centered">
-      <span id="minutes" v-bind:style="[this.isFinished ? {color: 'red'} : {}]">{{this.minutes}}</span>
-      <span id="middle" v-bind:style="[this.isFinished ? {color: 'red'} : {}]">:</span>
-      <span id="seconds" v-bind:style="[this.isFinished ? {color: 'red'} : {}]">{{this.seconds}}</span>
+    <div
+      id="timer"
+      class="level-item has-text-centered"
+      v-bind:style="[this.timer.duration < 0 ? {color: 'red'} : {}]"
+    >
+      <span>{{this.isNegative() + this.minutes}}</span>
+      <span>:</span>
+      <span>{{this.seconds}}</span>
     </div>
-    <!-- <app-timer-widget></app-timer-widget> -->
 
-    <Explanation explanationClass="helper down" text='"Retour"' handDirection="chevron-down" 
-        @onClick="clickBack()"></Explanation>
+    <Explanation
+      explanationClass="helper down"
+      text="Retour"
+      handDirection="chevron-down"
+      @onClick="clickBack()"
+    ></Explanation>
 
-    <Explanation explanationClass="helper top" text='"Pause"' handDirection="chevron-up" 
-        @onClick="stopButtonClicked()" v-if="this.timer.isRunning"></Explanation>
-        
-    <Explanation explanationClass="helper top" text='"Démarrer"' handDirection="chevron-up" 
-        @onClick="startButtonClicked()" v-if="!this.timer.isRunning"></Explanation>
+    <Explanation
+      explanationClass="helper top"
+      text="Pause"
+      handDirection="chevron-up"
+      @onClick="stopButtonClicked()"
+      v-if="this.timer.isRunning"
+    ></Explanation>
 
-    <Explanation explanationClass="helper left" text='"Enlever"' handDirection="chevron-left" @onClick="removeTimeButtonClicked()"></Explanation>
-    
-    <Explanation explanationClass="helper right" text='"Ajouter"' handDirection="chevron-right" @onClick="addTimeButtonClicked()"></Explanation>
-    </div>
+    <Explanation
+      explanationClass="helper top"
+      text="Démarrer"
+      handDirection="chevron-up"
+      @onClick="startButtonClicked()"
+      v-if="!this.timer.isRunning"
+    ></Explanation>
+
+    <Explanation
+      explanationClass="helper left"
+      text="Enlever"
+      handDirection="chevron-left"
+      @onClick="removeTimeButtonClicked()"
+    ></Explanation>
+
+    <Explanation
+      explanationClass="helper right"
+      text="Ajouter"
+      handDirection="chevron-right"
+      @onClick="addTimeButtonClicked()"
+    ></Explanation>
+  </div>
 </template>
 
 <script>
 import Timer from "../services/timer.js";
 import VocalRecognition from "../services/vocal-recognition.js";
-import TimerMinimal from "./TimerMinimal.vue";
-import Explanation from './Explanation.vue'
+import Explanation from "./Explanation.vue";
 
 export default {
   name: "TimerView",
-  props: {},
+  props: ["initialValue"],
   components: {
-    // /!\ For test purpose only
-    'app-timer-widget': TimerMinimal,
     Explanation
   },
   data() {
@@ -58,10 +81,14 @@ export default {
       this.$router.push("recipe/" + this.recipe.id);
     },
     startButtonClicked() {
-      this.timer.start(5);
+      this.timer.start(this.initialValue);
       this.isFinished = false;
+      this.$follower.chronoLaunched = true;
     },
     stopButtonClicked() {
+      if (this.timer.duration <= 0) {
+        this.$follower.chronoLaunched = false;
+      }
       this.timer.stop();
     },
     addTimeButtonClicked() {
@@ -73,29 +100,30 @@ export default {
     padTime(time) {
       return (time < 10 ? "0" : "") + time;
     },
-    clickBack(){
-      this.$follower.quitChrono();
+    isNegative() {
+      return this.timer.duration < 0 ? "-" : "";
     },
+    clickBack() {
+      this.$follower.quitChrono();
+    }
   },
   created() {
+    if (this.timer.duration === 0) {
+      this.timer.duration = this.initialValue;
+    }
     VocalRecognition.initContext({
-      "démarrer": () => {
-        Timer.start(5);
-        this.isFinished = false;
+      démarrer: () => {
+        this.startButtonClicked();
       },
-      "pause": () => {
-        Timer.stop();
+      pause: () => {
+        this.stopButtonClicked();
       },
-      "recommencer": () => {
-        Timer.clear();
-      },
-        "ajouter": () => {
-          console.log("AJOUTER")
+      ajouter: () => {
         this.addTimeButtonClicked();
-        }, "enlever" : () => {
-            console.log("ENLEVER")
-          this.removeTimeButtonClicked();
-       }
+      },
+      enlever: () => {
+        this.removeTimeButtonClicked();
+      }
     });
     this.timer.setTickCallback(() => {});
     this.timer.setEndCallback(() => {
@@ -106,7 +134,6 @@ export default {
 </script>
 
 <style lang="scss">
-
 .contain {
   position: relative;
 }

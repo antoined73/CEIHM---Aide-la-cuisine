@@ -1,5 +1,5 @@
 class Timer {
-  duration = 50;
+  duration = 0;
   isRunning = false;
   isPaused = false;
   tickCallback = null;
@@ -22,12 +22,10 @@ class Timer {
       this.setDuration(time);
     }
     this.interval = setInterval(() => {
+      this.duration -= 1;
       if (this.duration === 0) {
-        clearInterval(this.interval);
-        this.isRunning = false;
         this.endCallback();
       } else {
-        this.duration -= 1;
         this.tickCallback();
       }
     }, 1000);
@@ -39,6 +37,10 @@ class Timer {
     clearInterval(this.interval);
     this.isRunning = false;
     this.isPaused = true;
+    if (this.duration <= 0) {
+      this.duration = 0;
+      this.isPaused = 0;
+    }
   }
 
   clear() {
@@ -48,23 +50,27 @@ class Timer {
   }
 
   addTime(duration) {
-    this.duration += duration;
+    if (this.duration >= 0) {
+      this.duration += duration;
+    } else {
+      this.duration = duration;
+    }
   }
 
   removeTime(duration) {
     if (this.duration > duration) {
       this.duration -= duration;
-    } else {
+    } else if (this.duration > 0) {
       this.duration = 0;
     }
   }
 
   getMinutes() {
-    return Math.floor(this.duration / 60);
+    return Math.floor(Math.abs(this.duration) / 60);
   }
 
   getSeconds() {
-    return this.duration - 60 * this.getMinutes();
+    return Math.abs(this.duration % 60);
   }
 }
 

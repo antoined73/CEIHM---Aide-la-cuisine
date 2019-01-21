@@ -97,8 +97,8 @@ export default {
         }        
     },
     mounted(){
-            //this.$follower.updateRecipeAndStep();
-            this.updateFlags();
+        this.$events.on('update-navigation-flags', this.updateFlags)
+        this.updateFlags();
     }
 }
 </script>

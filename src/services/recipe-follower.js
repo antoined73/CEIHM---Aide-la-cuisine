@@ -5,6 +5,7 @@ export default class RecipeFollower {
     onStepChangeCallbacks = [];
     chronoLaunched = false;
     chronoAvailable = false;
+    showTooltip = true;
 
     constructor(store, router) {
         this.store = store;
@@ -28,6 +29,10 @@ export default class RecipeFollower {
                 this.currentStepIndex = parseInt(this.router.currentRoute.params.stepID);
             }
         }
+    }
+
+    disableToolTip() {
+        this.showTooltip = false;
     }
 
     goNextStep(){

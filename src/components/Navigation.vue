@@ -9,6 +9,16 @@
         <Explanation  v-if="canGoLeft" explanationClass="helper left" text='"Précédent"' handDirection="chevron-left" @onClick="clickLeftBtn()"></Explanation>
         
         <Explanation v-if="canGoRight" explanationClass="helper right" text='"Suivant"' handDirection="chevron-right" @onClick="clickRightBtn()"></Explanation>
+        <article v-if="showTooltip" class="message is-small goRight">
+            <div class="message-header">
+                <p>Comment ça marche ?</p>
+                <button class="delete is-small" aria-label="delete" @click="disableTooltip()"></button>
+            </div>
+            <div class="message-body">
+                Lorsque vous voyez cette icone <font-awesome-icon icon="hand-paper"/>, vous pouvez slidez dans la direction affichée.<br/>
+                Vous pouvez également utiliser le mot clé à côté de <font-awesome-icon icon="microphone"/>
+            </div>
+        </article>
 </div>
 </template>
 
@@ -47,7 +57,8 @@ export default {
             canGoRight: false,
             chronoLaunched : false,
             chronoAvailable : false,
-            videoAvailable : false
+            videoAvailable : false,
+            showTooltip: this.$follower.showTooltip
         }
     },
     methods: {
@@ -62,6 +73,10 @@ export default {
         },
         goChrono(){
             this.$follower.goToChrono();
+        },
+        disableTooltip() {
+            this.showTooltip = false;
+            this.$follower.disableTooltip();
         },
         goNextStep(){
             this.$emit("OnClickRightBtn");
@@ -104,5 +119,11 @@ export default {
 
     .interactable-item {
         pointer-events: all;
+    }
+
+    .goRight {
+        position: absolute;
+        top: 60%;
+        right: 0;
     }
 </style>

@@ -7,14 +7,13 @@ import RecipeHomeView from './../components/views/RecipeHomeView.vue'
 import RecipeStepView from './../components/views/RecipeStepView.vue'
 import NotFoundView from './../components/views/NotFoundView.vue'
 import VideoView from './../components/views/VideoView.vue';
-import TimerView from './../components/Timer.vue';
+import ChronoView from './../components/views/ChronoView.vue';
 
 Vue.use(VueRouter);
 
 const routes = [
     { path: '/', redirect: '/home' },
     { path: '/home', component: AccueilView },
-    {path: '/timer', component: TimerView},
     { path: '/recipe/:recipeID',
      component: RecipeView,
      children: [
@@ -24,11 +23,13 @@ const routes = [
         },
         {
           path: 'step/:stepID',
-          component: RecipeStepView
+          component: RecipeStepView,
+          meta: {key: ':stepID' }
         }
       ]
     },
     {path: '/recipe/:recipeID/step/:stepID/video', component: VideoView},
+    {path: '/recipe/:recipeID/step/:stepID/chrono', component: ChronoView},
     { path: '*', component: NotFoundView }
 ];
 

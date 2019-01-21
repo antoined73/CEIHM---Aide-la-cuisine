@@ -30,12 +30,17 @@ $control-border-width: 2px;
 $input-border-color: transparent;
 $input-shadow: none;
 
+// Size for explanation component
+$helper-width: 120px;
+$helper-width-divided: 50px;
+
 // Imports for Buefy
 @import './../../node_modules/buefy/src/scss/buefy-build.scss'; 
 
 
 // Modules
 @import 'modules/video.scss';
+@import 'modules/explanation.scss';
 
 // global classes 
 .clickable {

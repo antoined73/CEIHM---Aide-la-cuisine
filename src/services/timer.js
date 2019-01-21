@@ -1,67 +1,71 @@
 class Timer {
-    duration = 0;
-    tick = null;
-    end = null;
+  duration = 50;
+  isRunning = false;
+  isPaused = false;
+  tickCallback = null;
+  endCallback = null;
 
+  setDuration(duration) {
+    this.duration = duration;
+  }
 
-    setDuration(duration) {
-        this.duration = duration;
+  setTickCallback(callback) {
+    this.tickCallback = callback;
+  }
+
+  setEndCallback(callback) {
+    this.endCallback = callback;
+  }
+
+  start(time) {
+    if (!this.isRunning && !this.isPaused && this.duration === 0) {
+      this.setDuration(time);
     }
+    this.interval = setInterval(() => {
+      if (this.duration === 0) {
+        clearInterval(this.interval);
+        this.isRunning = false;
+        this.endCallback();
+      } else {
+        this.duration -= 1;
+        this.tickCallback();
+      }
+    }, 1000);
+    this.isRunning = true;
+    this.isPaused = false;
+  }
 
-    setTick(callback) {
-        this.tick = callback;
+  stop() {
+    clearInterval(this.interval);
+    this.isRunning = false;
+    this.isPaused = true;
+  }
+
+  clear() {
+    this.duration = 0;
+    clearInterval(this.interval);
+    this.isRunning = false;
+  }
+
+  addTime(duration) {
+    this.duration += duration;
+  }
+
+  removeTime(duration) {
+    if (this.duration > duration) {
+      this.duration -= duration;
+    } else {
+      this.duration = 0;
     }
+  }
 
-    setEnd(callback) {
-        this.end = callback;
-    }
+  getMinutes() {
+    return Math.floor(this.duration / 60);
+  }
 
-    isRunning() {
-        return this.duration > 0;
-    }
-
-    start() {
-        this.interval = setInterval(() => {
-            this.duration -= 1;
-            this.tick();
-            if (this.duration === 0) {
-                clearInterval(this.interval);
-                this.end();
-            }
-        }, 1000);
-    }
-
-    stop() {
-        clearInterval(this.interval)
-    }
-
-
-    clear() {
-        this.duration = 0;
-        if (this.interval) {
-            clearInterval(this.interval);
-        }
-    }
-
-    resume() {
-        this.start();
-    }
-
-    addTime(duration) {
-        this.duration += duration;
-    }
-
-    removeTime(duration) {
-        this.duration -= duration
-    }
-
-    getMinutes() {
-        return Math.floor(this.duration / 60);
-    }
-
-    getSeconds() {
-        return this.duration - (60 * this.getMinutes());
-    }
+  getSeconds() {
+    return this.duration - 60 * this.getMinutes();
+  }
 }
 
 export default new Timer();

@@ -5,24 +5,29 @@
         <youtube :video-id="videoId" :player-vars="playerVars" :resize="true" 
         :fitParent="true" ref="youtube" @ready="playVideo" @playing="playingVideo" 
         @paused="pausedVideo"></youtube>
-        <div class="helper-back">
-            <img src="@/assets/images/hand-gesture-up.png"
-            alt="retour" />
-        </div>
-    </section>
 
-    <div class="flex-column">
-        <a class="button is-primary" @click="play()" v-if="!playing">Play</a>
-        <a class="button is-primary" @click="pause()" v-if="playing">Pause</a>
-        <a class="button is-secondary" @click="forward()">Avancer</a>
-        <a class="button is-secondary" @click="backward()">Reculer</a>
-    </div>
+        <Explanation explanationClass="helper top" text='"Retour"' handDirection="chevron-up" 
+        @onClick="returnRecipe()"></Explanation>
+
+        <Explanation explanationClass="helper down" text='"Pause"' handDirection="chevron-down" 
+            @onClick="pause()" v-if="playing"></Explanation>
+            
+        <Explanation explanationClass="helper down" text='"Play"' handDirection="chevron-down" 
+            @onClick="play()" v-if="!playing"></Explanation>
+
+        <Explanation explanationClass="helper left" text='"Reculer"' handDirection="chevron-left" @onClick="backward()"></Explanation>
+        
+        <Explanation explanationClass="helper right" text='"Avancer"' handDirection="chevron-right" @onClick="forward()"></Explanation>
+    </section>
 
 </section>
     
 </template>
 
 <script>
+    import VocalRecognition from '../services/vocal-recognition';
+
+import Explanation from './Explanation.vue'
 
 export default {
     name: 'Video',
@@ -35,6 +40,36 @@ export default {
             },
             playing: false
         }
+    },
+    components: {
+        Explanation
+    },
+    computed: {
+        player() {
+            return this.$refs.youtube.player;
+        }
+    },
+    created() {
+        VocalRecognition.initContext({
+            "avancer": () => {
+                this.player.getCurrentTime().then(value => {
+                    this.player.seekTo(value + 10, true);
+                });
+            }, "reculer": () => {
+                this.player.getCurrentTime().then(value => {
+                    this.player.seekTo(value - 10, true);
+                });
+            },
+            "pause": () => {
+                this.player.pauseVideo();
+            },
+            "play": () => {
+                this.player.playVideo();
+            },
+            "retour": () => {
+                this.returnRecipe();
+            }
+        });
     },
     methods: {
         playVideo() {
@@ -54,22 +89,20 @@ export default {
             this.player.pauseVideo();
         },
         forward() {
-            this.player.getCurrentTime().then( value => {
+            this.player.getCurrentTime().then(value => {
                 this.player.seekTo(value + 10, true);
             });
         },
         backward() {
-            this.player.getCurrentTime().then( value => {
+            this.player.getCurrentTime().then(value => {
                 this.player.seekTo(value - 10, true);
             });
-        }
-    },
-    computed: {
-        player() {
-            return this.$refs.youtube.player
+        },
+    
+        returnRecipe() {
+            this.$router.go(-1);
         }
     }
-
 }
 </script>
 

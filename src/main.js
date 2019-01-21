@@ -7,8 +7,8 @@ import RecipeFollower from './services/recipe-follower.js'
 import VueYoutube from 'vue-youtube'
 import { FontAwesomeIcon, FontAwesomeLayers, FontAwesomeLayersText } from '@fortawesome/vue-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faHome, faChevronRight, faChevronLeft, faMicrophone, faHandPaper, faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons'
 import VueEvents from 'vue-event-handler'
+import { faHome, faChevronRight, faChevronLeft, faMicrophone, faHandPaper, faChevronUp, faChevronDown, faStopwatch, faPlayCircle, faPauseCircle, faUndo  } from '@fortawesome/free-solid-svg-icons'
 
 window.gestIsStarted = false
 
@@ -32,7 +32,11 @@ library.add(
   faMicrophone,
   faHandPaper,
   faChevronUp,
-  faChevronDown
+  faChevronDown,
+  faPlayCircle,
+  faPauseCircle,
+  faUndo,
+  faStopwatch
 )
 
 Vue.prototype.$follower = new RecipeFollower(store, router);

@@ -20,7 +20,6 @@ export default {
     },
     methods: {
         recipeClicked(){
-            this.$router.push('recipe/'+this.recipe.id);
             this.$follower.startRecipe(this.recipe);
         }
     }

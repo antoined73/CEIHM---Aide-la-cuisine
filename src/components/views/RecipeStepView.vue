@@ -2,14 +2,14 @@
 <div class="view-container">
     <gest-wrapper-library/>
 
-    <RecipeStepHeader :recipe="this.recipe"/>
     <!-- If step exist -->
     <div class="section section-little" v-if="this.recipeStep">
         <div class="notification has-text-centered">
             <p class="title is-size-4">Étape {{this.recipeStep.number}}</p>
             <p class="is-size-8">{{this.recipeStep.description}}</p>
             <br>
-            <button class="button is-primary" v-if="this.recipeStep.video" @click="linkToVideo()">Voir la vidéo explicative</button>
+            <!-- <button class="button is-primary" v-if="this.recipeStep.chrono" @click="linkToChrono()">Lancer le chrono</button> -->
+            <!-- <button class="button is-primary" v-if="this.recipeStep.video" @click="linkToVideo()">Voir la vidéo explicative</button> -->
         </div>
     </div>
     <!-- If step doesn't exist -->
@@ -31,30 +31,29 @@
 
 <script>
 
-import RecipeStepHeader from '../headers/RecipeStepHeader.vue'
 import GestWrapperLibrary from '../GestWrapperLibrary.vue'
 
 
 export default {
     components:{
-        RecipeStepHeader,
         GestWrapperLibrary
     },
     data(){
         return {
             recipe: Object,
+            recipeStep : Object
         }
     },
     created(){
-        this.recipe = this.$store.getters.getRecipeById(this.$route.params.recipeID);
+        this.recipe = this.$follower.currentRecipeFollowed;
+        this.recipeStep = this.$follower.currentStep;
+
+        this.$follower.subscribeOnStepChangeCallback((newStep) => {
+            this.recipeStep = newStep;
+        });
     },
     mounted() {
         this.$events.on('gest-event', this.handleGestEvent)
-    },
-    computed:{
-        recipeStep(){
-            return this.$store.getters.getRecipeStepOfRecipe(this.$route.params.recipeID, this.$route.params.stepID);
-        }
     },
     methods: {
         handleGestEvent(event) {
@@ -72,11 +71,15 @@ export default {
              }
         },
         clickBackHomeRecipeBtn(){
-            this.$router.push("/recipe/"+this.$route.params.recipeID);
+            this.$follower.goToHomeRecipe();
         },
         linkToVideo(){
             this.$events.off('gest-event')
-            this.$router.push(this.recipeStep.number+"/video");
+            //this.$router.push(this.recipeStep.number+"/video");
+            this.$follower.goToVideo();
+        },
+        linkToChrono(){
+            this.$follower.goToChrono();
         }
     },
     beforeDestroy() {
@@ -84,7 +87,3 @@ export default {
     }
 }
 </script>
-
-<style>
-
-</style>

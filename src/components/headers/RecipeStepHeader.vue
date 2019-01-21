@@ -1,6 +1,6 @@
 <template>
     <section class="hero is-primary">
-        <div class="hero-body is-paddingless">
+        <div class="hero-body" :class="{'is-paddingless' : this.recipe}">
             <!-- If recipe exist -->
             <div v-if="recipe" class="container">
                 <div class="level is-mobile">
@@ -12,6 +12,12 @@
                             <h1 class="title is-size-5-touch">
                                 {{this.recipe.name}}
                             </h1>
+                        </div>
+                    </div>
+
+                    <div class="level-right">
+                        <div v-if="chronoAvailable || chronoLaunched" class="level-item">
+                            <TimerMinimal/>
                         </div>
                     </div>
                 </div>
@@ -29,17 +35,36 @@
 
 <script>
 import HomeButton from '../HomeButton.vue'
+import ChronoButton from '../ChronoButton.vue'
+import TimerMinimal from '../TimerMinimal.vue'
 
 export default {
     name: 'RecipeStepHeader',
     components : {
-        HomeButton
+        HomeButton,
+        ChronoButton,
+        TimerMinimal
     },
     props : {
         recipe : {
             type: Object,
             default: null
         }
+    },
+    data(){
+        return {
+            chronoLaunched : false,
+            chronoAvailable : false
+        }
+    },
+    created(){
+        this.chronoLaunched = this.$follower.chronoLaunched;
+        this.chronoAvailable = this.$follower.chronoAvailable;
+        // eslint-disable-next-line
+        this.$follower.subscribeOnStepChangeCallback((newStep) =>{
+            this.chronoLaunched = this.$follower.chronoLaunched;
+            this.chronoAvailable = this.$follower.chronoAvailable;
+        })
     }
 }
 </script>

@@ -1,63 +1,85 @@
 <template>
-<div class="ontop">
-    <div class="level is-mobile">
-        <!-- Left side -->
-        <div class="level-left">
-            <div class="level-item interactable-item">
-                    <a class="button is-inverted is-medium is-primary is-opacity-50" @click="clickLeftBtn()" v-if="canGoLeft">
-                    <span class="icon is-medium">
-                    <font-awesome-icon icon="chevron-left" size="2x" />
-                    </span>
-                </a>
-            </div>
-        </div>
+<div style="ontop">
+        <Explanation v-if="chronoLaunched || chronoAvailable"  explanationClass="helper top" text='"Chronomètre"' handDirection="chevron-up" 
+        @onClick="goChrono()"></Explanation>
+            
+        <Explanation v-if="videoAvailable" explanationClass="helper down" text='"Video"' handDirection="chevron-down" 
+            @onClick="goVideo()"></Explanation>
 
-        <!-- Right side -->
-        <div class="level-right">
-            <div class="level-item interactable-item">
-                    <a class="button is-inverted is-medium is-primary is-opacity-50" @click="clickRightBtn()" v-if="canGoRight">
-                    <span class="icon is-medium">
-                    <font-awesome-icon icon="chevron-right" size="2x" />
-                    </span>
-                </a>
-            </div>
-        </div>
-    </div>
+        <Explanation  v-if="canGoLeft" explanationClass="helper left" text='"Précédent"' handDirection="chevron-left" @onClick="clickLeftBtn()"></Explanation>
+        
+        <Explanation v-if="canGoRight" explanationClass="helper right" text='"Suivant"' handDirection="chevron-right" @onClick="clickRightBtn()"></Explanation>
 </div>
-    
 </template>
 
 <script>
-
+import VocalRecognition from '../services/vocal-recognition';
+import Explanation from './Explanation.vue'
 
 export default {
-    props : {
-        recipe : Object
+    props: {
+        recipe: Object
+    },
+    components : {
+        Explanation
+    },
+    created() {
+        VocalRecognition.initContext({
+            "précédent": () => {
+                this.goPreviousStep();
+            }, "suivant": () => {
+                this.goNextStep();
+            }, "video": () => {
+                this.goVideo();
+            }, "chronomètre" : () => {
+                this.goChrono();
+            }
+        });
+
+        // eslint-disable-next-line
+        this.$follower.subscribeOnStepChangeCallback((newStep) =>{
+            this.updateFlags();
+        })
     },
     data() {
         return {
-            canGoLeft : false,
-            canGoRight : false
+            canGoLeft: false,
+            canGoRight: false,
+            chronoLaunched : false,
+            chronoAvailable : false,
+            videoAvailable : false
         }
     },
-    watch : {
-        recipe(){
-            this.$follower.startRecipe(this.recipe);
-        }
-    },
-    methods : {
+    methods: {
         clickRightBtn(){
+            this.goNextStep();
+        },
+        clickLeftBtn(){
+            this.goPreviousStep();
+        },
+        goVideo(){
+            this.$follower.goToVideo();
+        },
+        goChrono(){
+            this.$follower.goToChrono();
+        },
+        goNextStep(){
+            this.$emit("OnClickRightBtn");
             this.$follower.goNextStep();
             this.updateFlags();
         },
-        clickLeftBtn(){
+        goPreviousStep(){
+            this.$emit("OnClickLeftBtn");
             this.$follower.goPreviousStep();
             this.updateFlags();
         },
-        updateFlags(){
+        updateFlags() {
+            this.chronoLaunched = this.$follower.chronoLaunched;
+            this.chronoAvailable = this.$follower.chronoAvailable;
+            this.videoAvailable = this.$follower.currentStep && this.$follower.currentStep.video;
             this.canGoLeft = this.$follower.canGoPreviousStep();
             this.canGoRight = this.$follower.canGoNextStep();
-        }
+        }        
     },
     mounted(){
         this.$events.on('update-navigation-flags', this.updateFlags)
@@ -68,20 +90,20 @@ export default {
 </script>
 
 <style>
-.ontop{
-    z-index: 100;
-    position: fixed;
-    width: 100%;
-    top: 50%;
-    transform: translateY(-50%);
-    pointer-events: none;
-}
+    .ontop {
+        z-index: 100;
+        position: fixed;
+        width: 100%;
+        top: 50%;
+        transform: translateY(-50%);
+        pointer-events: none;
+    }
 
-.is-opacity-50{
-    opacity: 0.5;
-}
+    .is-opacity-50 {
+        opacity: 0.5;
+    }
 
-.interactable-item{
-    pointer-events: all;
-}
+    .interactable-item {
+        pointer-events: all;
+    }
 </style>

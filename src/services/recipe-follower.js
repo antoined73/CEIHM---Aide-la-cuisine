@@ -87,7 +87,7 @@ export default class RecipeFollower {
     }
 
     goToVideo(){
-        this.router.push(this.currentStep.number+"/video");
+        if(this.currentStep.video) this.router.push(this.currentStep.number+"/video");
     }
 
     quitVideo(){
@@ -106,7 +106,7 @@ export default class RecipeFollower {
     }
 
     goToChrono(){
-        this.router.push(this.currentStep.number+"/chrono");
+        if(this.chronoAvailable || this.chronoLaunched) this.router.push(this.currentStep.number+"/chrono");
     }
 
     quitChrono(){

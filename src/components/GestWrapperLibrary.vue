@@ -3,17 +3,22 @@
 </template>
 
 <script>
-import { serverBus } from '../main';
+
+
 export default {
   name: 'GestWrapperLibrary',
   methods: {
       communicateDirection(event) {
-          serverBus.$emit('gest-event', event.direction)
+          this.$events.fire('gest-event', event.direction)
       }
   },
   mounted() {
-    window.gest.start()
-    window.gest.options.subscribeWithCallback(this.communicateDirection)
-  },
+      if (window.gestIsStarted != true) {
+        window.gestIsStarted = true
+        window.gest.start()
+        window.gest.options.sensitivity(50)
+        window.gest.options.subscribeWithCallback(this.communicateDirection)
+      }
+  }
 }
 </script> 

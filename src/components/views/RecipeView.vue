@@ -1,52 +1,47 @@
 <template>
     <div>
-        <template v-if="recipe">
-            <gest-wrapper-library/>
-            <p>{{this.recipe.name}}</p>
-            <a @click="linkToVideo()">Go to the video helper</a>
-        </template>
-        <template v-else>
-            <p>The recipe you are searching for doesn't exist or is no longer available :(</p>
-        </template>
+        <Navigation :recipe="recipe" ref="navigation"/>
+
+        <!-- If recipe exist -->
+        <router-view v-if="recipe"/>
+
+        <!-- If recipe doesn't exist -->
+        <div v-if="!recipe" class="section">
+            <div class="notification has-text-centered">
+                <p class="title is-size-4">La recette que tu cherches n'existe pas ou n'existe plus..</p>
+                <a class="button is-large is-primary" @click="clickBackHomeButton()">Retourner à l'accueil</a>
+            </div>
+        </div>
     </div>
+    
 </template>
 
 <script>
 
-import GestWrapperLibrary from '../GestWrapperLibrary.vue'
-import { serverBus } from '../../main';
+import Navigation from '../Navigation.vue';
 
 
 export default {
     name: 'RecipeView',
     methods: {
-        handleGestEvent(event) {
-             if (event.toLowerCase().includes('down')) {
-                this.$router.push('/recipeVideo/'+this.recipe.id);
-             }
+        clickBackHomeButton(){
+            this.$router.push("/");
         },
 
         linkToVideo(){
             this.$router.push('/recipeVideo/'+this.recipe.id);
         }
     },
-
     data(){
         return {
             recipe: Object,
         }
     },
     created(){
-        this.recipe = this.$store.getters.getRecipeById(this.$route.params.id);
-            serverBus.$on('gest-event', this.handleGestEvent)
+        this.recipe = this.$store.getters.getRecipeById(this.$route.params.recipeID)
     },
     components: {
-        GestWrapperLibrary
-    },
-
+        Navigation,
+    }
 }
 </script>
-
-<style>
-
-</style>

@@ -3,7 +3,7 @@ import annyang from 'annyang';
 let commands;
 
 if (annyang) {
-    annyang.setLanguage('fr-FR')
+    annyang.setLanguage('fr-FR');
 }
 
 export default {
@@ -21,6 +21,7 @@ export default {
             annyang.removeCommands(commands);
         }
         commands = context;
+
         annyang.addCommands(context);
         annyang.start();
     }

@@ -60,7 +60,7 @@ export default {
             if (event == null || event == undefined) {
                 return
             }
-             if (event.toLowerCase().includes('down') && this.$follower.canGoPreviousStep()) {
+             if (event.toLowerCase().includes('down') && this.$follower.currentStep && this.$follower.currentStep.video) {
                 this.linkToVideo()
              } else if (event.toLowerCase().includes('left') && this.$follower.canGoPreviousStep()) {
                  this.$follower.goPreviousStep();

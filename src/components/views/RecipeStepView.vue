@@ -7,7 +7,7 @@
             <p class="is-size-8">{{this.recipeStep.description}}</p>
             <br>
             <!-- <button class="button is-primary" v-if="this.recipeStep.chrono" @click="linkToChrono()">Lancer le chrono</button> -->
-            <button class="button is-primary" v-if="this.recipeStep.video" @click="linkToVideo()">Voir la vidéo explicative</button>
+            <!-- <button class="button is-primary" v-if="this.recipeStep.video" @click="linkToVideo()">Voir la vidéo explicative</button> -->
         </div>
     </div>
     <!-- If step doesn't exist -->

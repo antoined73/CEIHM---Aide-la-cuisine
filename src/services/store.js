@@ -226,7 +226,7 @@ const store = new Vuex.Store({
                         }
                     }, {
                         number: 1,
-                        description: "Etalez une feuille de célophane sur le plan de travail.",
+                        description: "Etalez une natte de bambou sur le plan de travail.",
                         video: null,
                         chrono: null
                     }, {
@@ -261,7 +261,7 @@ const store = new Vuex.Store({
                         chrono: null
                     }, {
                         number: 7,
-                        description: "Enroulez l'algue en vous servant du célophane.",
+                        description: "Enroulez l'algue en vous servant de la natte de bambou.",
                         video: {
                             id: "t52gsJSOF_E",
                             timestampStep: 380

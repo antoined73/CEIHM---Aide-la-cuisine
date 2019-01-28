@@ -198,13 +198,13 @@ const store = new Vuex.Store({
                         unit: "g"
                     }, {
                         id: 8,
-                        name: "Feuille d'algue de Nori",
+                        name: "Feuille d'algue Nori",
                         image: "https://image.afcdn.com/recipe/20171110/74695_w100h100c1cx3000cy2000cxt0cyt0cxb6000cyb4000.jpg",
                         quantity: 1,
                         unit: ""
                     }, {
                         id: 9,
-                        name: "Feuille de sésame",
+                        name: "Graines de sésame",
                         image: "https://image.afcdn.com/recipe/20170607/67391_w100h100c1cx350cy350.jpg",
                         quantity: 1,
                         unit: ""

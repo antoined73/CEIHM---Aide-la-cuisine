@@ -1,6 +1,5 @@
 <template>
 <div class="view-container">
-    <gest-wrapper-library/>
 
     <!-- If step exist -->
     <div class="section section-little" v-if="this.recipeStep">
@@ -31,12 +30,10 @@
 
 <script>
 
-import GestWrapperLibrary from '../GestWrapperLibrary.vue'
 
 
 export default {
     components:{
-        GestWrapperLibrary
     },
     data(){
         return {
@@ -62,12 +59,14 @@ export default {
             }
              if (event.toLowerCase().includes('down') && this.$follower.currentStep && this.$follower.currentStep.video) {
                 this.linkToVideo()
-             } else if (event.toLowerCase().includes('left') && this.$follower.canGoPreviousStep()) {
-                 this.$follower.goPreviousStep();
-                 this.$events.fire('update-navigation-flags')
-             } else if (event.toLowerCase().includes('right') && this.$follower.canGoNextStep()) {
+             } else if (event.toLowerCase().includes('left') && this.$follower.canGoNextStep()) {
                  this.$follower.goNextStep();
                  this.$events.fire('update-navigation-flags')
+             } else if (event.toLowerCase().includes('right') && this.$follower.canGoPreviousStep()) {
+                 this.$follower.goPreviousStep();
+                 this.$events.fire('update-navigation-flags')
+             } else if (event.toLowerCase().includes('up')) {
+                 this.$follower.goToChrono();
              }
         },
         clickBackHomeRecipeBtn(){

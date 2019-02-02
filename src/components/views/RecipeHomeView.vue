@@ -27,13 +27,12 @@ export default {
     data(){
         return {
             recipe : Object, 
-            showTooltip : this.$follower.showTooltip
+            showTooltip : true
         }
     },
     methods : {
         disableTooltip() {
             this.showTooltip = false;
-            this.$follower.showTooltip = false;
         }
     },
     created(){

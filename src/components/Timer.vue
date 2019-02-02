@@ -123,6 +123,9 @@ export default {
       },
       enlever: () => {
         this.removeTimeButtonClicked();
+      },
+      retour: () => {
+        this.clickBack();
       }
     });
     this.timer.setTickCallback(() => {});

@@ -1,6 +1,16 @@
 <template>
 <div class="view-container">
     <div class="section has-text-centered section-little">
+        <article v-if="showTooltip" class="message is-small">
+            <div class="message-header">
+                <p>Comment ça marche ?</p>
+                <button class="delete is-small" aria-label="delete" @click="disableTooltip()"></button>
+            </div>
+            <div class="message-body">
+                Lorsque vous voyez cette icone <font-awesome-icon icon="hand-paper"/>, vous pouvez slidez dans la direction affichée.<br/>
+                Vous pouvez également utiliser le mot clé à côté de <font-awesome-icon icon="microphone"/>
+            </div>
+        </article>
         <p class="title is-size-4">Je cuisine pour 4 personnes</p>
         <IngredientList :recipe="this.recipe"/>
     </div>
@@ -16,7 +26,14 @@ export default {
     },
     data(){
         return {
-            recipe : Object
+            recipe : Object, 
+            showTooltip : this.$follower.showTooltip
+        }
+    },
+    methods : {
+        disableTooltip() {
+            this.showTooltip = false;
+            this.$follower.showTooltip = false;
         }
     },
     created(){

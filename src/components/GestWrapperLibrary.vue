@@ -17,7 +17,7 @@ export default {
       if (window.gestIsStarted != true) {
         window.gestIsStarted = true
         window.gest.start()
-        window.gest.options.sensitivity(50)
+        window.gest.options.sensitivity(100)
         window.gest.options.subscribeWithCallback(this.communicateDirection)
       }
   }

@@ -79,7 +79,7 @@ export default {
             if (event.toLowerCase().includes('up')) {
                 this.returnRecipe()
             } else if (event.toLowerCase().includes('down')) {
-                if (this.playing === true) {
+                if (this.playing === false) {
                     this.play();
                 } else {
                     this.pause();

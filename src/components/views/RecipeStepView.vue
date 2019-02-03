@@ -59,10 +59,10 @@ export default {
             }
              if (event.toLowerCase().includes('down') && this.$follower.currentStep && this.$follower.currentStep.video) {
                 this.linkToVideo()
-             } else if (event.toLowerCase().includes('left') && this.$follower.canGoNextStep()) {
+             } else if (event.toLowerCase().includes('right') && this.$follower.canGoNextStep()) {
                  this.$follower.goNextStep();
                  this.$events.fire('update-navigation-flags')
-             } else if (event.toLowerCase().includes('right') && this.$follower.canGoPreviousStep()) {
+             } else if (event.toLowerCase().includes('left') && this.$follower.canGoPreviousStep()) {
                  this.$follower.goPreviousStep();
                  this.$events.fire('update-navigation-flags')
              } else if (event.toLowerCase().includes('up')) {

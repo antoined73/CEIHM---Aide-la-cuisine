@@ -10,7 +10,7 @@ export default {
     initGest: function(Vue) {
         window.gestIsStarted = true;
         window.gest.start();
-        window.gest.options.sensitivity(50);
+        window.gest.options.sensitivity(85);
         window.gest.options.subscribeWithCallback(createCallback(Vue));
     }
 }

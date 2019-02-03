@@ -1,23 +1,17 @@
 <template>
-    <div class="box box-margin">
-        <div class="level is-mobile is-unselectable">
-            <!-- Left side -->
-                <div class="level-item">
-                    <figure class="image is-48x48">
-                        <img :src="this.ingredient.image" alt="Placeholder image">
-                    </figure>
+    <div class="box box-margin" style="height:90%;">
+        <div class="columns is-unselectable is-vcentered is-gapless">
+            <div class="column is-one-third">      
+                <figure class="image is-48x48">
+                    <img :src="this.ingredient.image" alt="Placeholder image">
+                </figure>
+            </div>
+            <div class="column text-align-left">
+                    <div>
+                    <strong class="breakable-text">{{this.ingredient.name}}</strong>
+                    <p>{{this.ingredient.quantity}} {{this.ingredient.unit}}</p>
                 </div>
-
-            <!-- Right side -->
-                <div class="level-item">
-                    <div class="columns">
-                        <div class="column has-text-left">
-                            <strong>{{this.ingredient.name}}</strong>
-                            <p>{{this.ingredient.quantity}} {{this.ingredient.unit}}</p>                    
-                        </div>
-                    </div>
-                    
-                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -31,7 +25,14 @@ export default {
 </script>
 
 <style scoped>
+.breakable-text{
+    word-break: break-word;
+    overflow-wrap: break-word;
+}
 .box-margin{
     margin: 0.2rem;
+}
+.margin-right {
+    margin-right: 2rem;
 }
 </style>

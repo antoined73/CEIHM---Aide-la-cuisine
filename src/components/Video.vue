@@ -12,7 +12,7 @@
         <Explanation explanationClass="helper down" text='"Pause"' handDirection="chevron-down" 
             @onClick="pause()" v-if="playing"></Explanation>
             
-        <Explanation explanationClass="helper down" text='"Play"' handDirection="chevron-down" 
+        <Explanation explanationClass="helper down" text='"Jouer"' handDirection="chevron-down" 
             @onClick="play()" v-if="!playing"></Explanation>
 
         <Explanation explanationClass="helper left" text='"Reculer"' handDirection="chevron-left" @onClick="backward()"></Explanation>
@@ -64,9 +64,11 @@ export default {
                 });
             },
             "pause": () => {
+                console.log('Pause with voice')
                 this.player.pauseVideo();
             },
-            "play": () => {
+            "jouer": () => {
+                console.log('Play with voice')
                 this.player.playVideo();
             },
             "retour": () => {
@@ -80,8 +82,10 @@ export default {
                 this.returnRecipe()
             } else if (event.toLowerCase().includes('down')) {
                 if (this.playing === false) {
+                    console.log('Play with gest')
                     this.play();
                 } else {
+                    console.log('Pause with gest')
                     this.pause();
                 }
             } else if (event.toLowerCase().includes('right')) {

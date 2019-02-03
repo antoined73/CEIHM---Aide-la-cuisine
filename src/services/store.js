@@ -219,7 +219,7 @@ const store = new Vuex.Store({
                 steps: [
                     {
                         number: 0,
-                        description: "Préparation riz (déjà fait). Il suffit de lancer un timer",
+                        description: "La préparation riz est terminée. Il faut maintenant lancer un timer sur 2 minutes pour que le riz puisse refroidir",
                         video: null,
                         chrono: {
                             startTimeInSeconds: 15

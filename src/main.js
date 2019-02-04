@@ -9,21 +9,22 @@ import { FontAwesomeIcon, FontAwesomeLayers, FontAwesomeLayersText } from '@fort
 import { library } from '@fortawesome/fontawesome-svg-core'
 import VueEvents from 'vue-event-handler'
 import { faHome, faChevronRight, faChevronLeft, faMicrophone, faHandPaper, faChevronUp, faChevronDown, faStopwatch, faPlayCircle, faPauseCircle, faUndo  } from '@fortawesome/free-solid-svg-icons'
+import GestService from './services/gest.js'
 
-window.gestIsStarted = false
+window.gestIsStarted = false;
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
 // Buefy 
-Vue.use(Buefy, { defaultIconPack: 'fa' })
+Vue.use(Buefy, { defaultIconPack: 'fa' });
 
 // Font Awesome
-Vue.component('font-awesome-icon', FontAwesomeIcon)
-Vue.component('font-awesome-layers', FontAwesomeLayers)
-Vue.component('font-awesome-layers-text', FontAwesomeLayersText)
+Vue.component('font-awesome-icon', FontAwesomeIcon);
+Vue.component('font-awesome-layers', FontAwesomeLayers);
+Vue.component('font-awesome-layers-text', FontAwesomeLayersText);
 
-Vue.use(VueYoutube)
-Vue.use(VueEvents)
+Vue.use(VueYoutube);
+Vue.use(VueEvents);
 
 library.add(
   faHome,
@@ -37,12 +38,15 @@ library.add(
   faPauseCircle,
   faUndo,
   faStopwatch
-)
+);
 
 Vue.prototype.$follower = new RecipeFollower(store, router);
 
-new Vue({
+const app = new Vue({
   router,
   store,
   render: h => h(App)
-}).$mount('#app')
+}).$mount('#app');
+
+
+GestService.initGest(app);

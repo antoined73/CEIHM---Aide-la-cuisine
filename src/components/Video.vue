@@ -49,6 +49,9 @@ export default {
             return this.$refs.youtube.player;
         }
     },
+    mounted() {
+        this.$events.on('gest-event', this.handleGestEvent)
+    },
     created() {
         VocalRecognition.initContext({
             "avancer": () => {
@@ -72,6 +75,22 @@ export default {
         });
     },
     methods: {
+        handleGestEvent(event) {
+            if (event.toLowerCase().includes('up')) {
+                this.returnRecipe()
+            } else if (event.toLowerCase().includes('down')) {
+                if (this.playing === true) {
+                    this.play();
+                } else {
+                    this.pause();
+                }
+            } else if (event.toLowerCase().includes('right')) {
+                this.forward();
+            } else if (event.toLowerCase().includes('left')) {
+                this.backward();
+            }
+
+        },
         playVideo() {
             this.player.seekTo(this.videoTimestamp, true);
             this.player.playVideo()
@@ -102,6 +121,9 @@ export default {
         returnRecipe() {
             this.$router.go(-1);
         }
+    },
+    beforeDestroy() {
+        this.$events.off('gest-event')
     }
 }
 </script>

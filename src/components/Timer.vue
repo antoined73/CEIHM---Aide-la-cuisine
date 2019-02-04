@@ -105,8 +105,28 @@ export default {
     },
     clickBack() {
       this.$follower.quitChrono();
-    }
+    },
+    handleGestEvent(event) {
+      if (event == null || event == undefined) {
+        return
+      }
+      if (event.toLowerCase().includes('down')) {
+        this.$events.off()
+        this.clickBack();
+      } else if (event.toLowerCase().includes('left')) {
+        this.addTimeButtonClicked();
+      } else if (event.toLowerCase().includes('right')) {
+        this.removeTimeButtonClicked()
+      } else if (event.toLowerCase().includes('up')) {
+        if (this.$follower.chronoLaunched === true) {
+          this.stopButtonClicked();
+        } else {
+          this.startButtonClicked();
+        }
+      }
+    },
   },
+
   created() {
     if (this.timer.duration === 0) {
       this.timer.duration = this.initialValue;
@@ -123,12 +143,21 @@ export default {
       },
       enlever: () => {
         this.removeTimeButtonClicked();
+      },
+      retour: () => {
+        this.clickBack();
       }
     });
     this.timer.setTickCallback(() => {});
     this.timer.setEndCallback(() => {
       this.isFinished = true;
     });
+  },
+  mounted() {
+    this.$events.on('gest-event', this.handleGestEvent)
+  },
+  beforeDestroy() {
+    this.$events.off('gest-event')
   }
 };
 </script>

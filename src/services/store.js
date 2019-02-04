@@ -236,12 +236,12 @@ const store = new Vuex.Store({
                         chrono: null
                     }, {
                         number: 3,
-                        description: "Humidifiez vos mains (avec du vinaigre de riz par exemple).",
+                        description: "Posez la feuille d'algue de Nori dans le sens de la largeur, ",
                         video: null,
                         chrono: null
                     }, {
                         number: 4,
-                        description: "Posez la feuille d'algue dans le sens de la largeur, et recouvrez-la d'une" +
+                        description: "Humidifiez vos mains (avec du vinaigre de riz par exemple), et recouvrez la feuille d'algue d'une" +
                             " couche de riz.\n" +
                             "Laissez un ou deux centimètres non recouvert sur la largeur supérieure afin de pouvoir ensuite refermer aisément le rouleau.",
                         video: {

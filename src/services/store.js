@@ -222,7 +222,7 @@ const store = new Vuex.Store({
                         description: "Préparation riz (déjà fait). Il suffit de lancer un timer",
                         video: null,
                         chrono: {
-                            startTimeInSeconds: 120
+                            startTimeInSeconds: 15
                         }
                     }, {
                         number: 1,
